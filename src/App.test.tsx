@@ -9,17 +9,11 @@ test('No muestra las 50 pelis más vistas', () => {
   );
   expect(dontShowMessage).toBeInTheDocument();
 });
-/* https://api.themoviedb.org/3/movie/popular?api_key=c26503d6621bb57cec7e2471ff7814d4&language=es */
-test('Muestra la caratula de la película "Venom: Habrá Matanza"', () => {
+
+test('Muestra la caratula de la película "Venom: Habrá Matanza"', async () => {
   render(<App />);
 
-  const filmCover = screen.getByRole('img', {
+  await screen.findByRole('img', {
     name: /Venom: Habrá Matanza/i,
   });
-
-  const dontShowMessage = screen.getByText(
-    /no se han podido mostrar las 50 películas más vistas/i
-  );
-  expect(filmCover).toBeInTheDocument();
-  expect(dontShowMessage).not.toBeInTheDocument();
 });
