@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import popularFilms from './popular_movie.json';
+import infoFromFilm from './App';
 
 test('No muestra las 50 pelis más vistas', () => {
   render(<App />);
@@ -10,10 +12,12 @@ test('No muestra las 50 pelis más vistas', () => {
   expect(dontShowMessage).toBeInTheDocument();
 });
 
-test('Muestra la caratula de la película "Venom: Habrá Matanza"', async () => {
+test('Muestra la carátula de las 20 películas más vistas', async () => {
   render(<App />);
 
-  await screen.findByRole('img', {
-    name: /Venom: Habrá Matanza/i,
-  });
+  for (let film of popularFilms.results) {
+    await screen.findByRole('img', {
+      name: `${film.title}`,
+    });
+  }
 });
