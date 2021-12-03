@@ -32,17 +32,19 @@ function App() {
 
   return (
     <>
-      {!loading &&
-        filmsInfo.length > 0 &&
+      {!loading && filmsInfo.length > 0 ? (
         filmsInfo.map((item: infoFromFilm, index: number) => {
           return (
             <img
+              key={index}
               src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
               alt={item.title}
             />
           );
-        })}
-      <p>No se han podido mostrar las 50 películas más vistas</p>
+        })
+      ) : (
+        <p>No se han podido mostrar las 50 películas más vistas</p>
+      )}
     </>
   );
 }
