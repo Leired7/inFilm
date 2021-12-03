@@ -11,17 +11,17 @@
 
 **Ejemplo R1:**
 
-- Se muestran las 50 pelis más vistas.
+- No se muestran las 50 pelis más vistas.
 
-- Irantzu accede a InFilm. => Se ven las 50 pelis más vistas
+- Irantzu accede a InFilm. => Se muestra un error.
 
 - [ ] Hecho
 
 **Ejemplo R1:**
 
-- No se muestran las 50 pelis más vistas.
+- Se muestran las 50 pelis más vistas.
 
-- Irantzu accede a InFilm. => Se muestra un error.
+- Irantzu accede a InFilm. => Se ven las 50 pelis más vistas
 
 - [ ] Hecho
 
