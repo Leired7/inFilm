@@ -2,8 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('No muestra las 50 pelis más vistas', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const dontShowMessage = screen.getByText(
+    /no se han podido mostrar las 50 películas más vistas/i
+  );
+  expect(dontShowMessage).toBeInTheDocument();
 });
