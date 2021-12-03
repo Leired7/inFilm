@@ -1,8 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import popularFilms from './popular_movie.json';
-import infoFromFilm from './App';
+import popularFilms from './mocks/popular_movie.json';
 
 test('No muestra las 50 pelis más vistas', () => {
   render(<App />);
