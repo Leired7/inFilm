@@ -38,6 +38,10 @@ function App() {
 
   return (
     <main>
+      <label htmlFor="busqueda">
+        ¿Qué quieres buscar hoy?
+        <input id="busqueda" />
+      </label>
       <HomeContainer error={error} loading={loading} filmsInfo={filmsInfo} />
     </main>
   );
