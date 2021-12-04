@@ -11,7 +11,7 @@ export const HomeContainer = (props: fetchedInfo) => {
     return <h1>Cargando...</h1>;
   }
 
-  if (props.filteredFilms.length === 0) {
+  if (props.filteredFilms.length === 0 && props.formatedFilter.length > 3) {
     return <p>Ohhhh no encontramos lo que buscabas 😔</p>;
   }
 

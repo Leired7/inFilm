@@ -12,6 +12,7 @@ export interface fetchedInfo {
   error: boolean;
   loading: boolean;
   filteredFilms: infoFromFilm[];
+  formatedFilter: string;
 }
 
 function App() {
@@ -60,11 +61,13 @@ function App() {
       <SearchBar
         textToFilter={textToFilter}
         setTextToFilter={setTextToFilter}
+        formatedFilter={formatedFilter}
       />
       <HomeContainer
         error={error}
         loading={loading}
         filteredFilms={filteredFilms}
+        formatedFilter={formatedFilter}
       />
     </main>
   );
