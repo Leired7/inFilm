@@ -4,6 +4,7 @@ import App from './App';
 import popularFilms from './mocks/popular_movie.json';
 import { server } from './mocks/server';
 import { rest } from 'msw';
+import userEvent from '@testing-library/user-event';
 
 describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
   test('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
@@ -42,10 +43,20 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 });
 
 describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis que me interesan PARA compartirlas en mis redes sociales', () => {
-  it('La longitud de un término de búsqueda para que devuelva resultados es de 3 caracteres', () => {
-    render(<App />);
+  describe('La longitud de un término de búsqueda para que devuelva resultados es de 3 caracteres', () => {
+    it('El término de búsqueda es inferior a 3 caracteres.', () => {
+      render(<App />);
 
-    const labelText = /¿Qué quieres buscar hoy?/i;
-    screen.getByLabelText(labelText);
+      const labelText = /¿Qué quieres buscar hoy?/i;
+      screen.getByLabelText(labelText);
+
+      const searchInput = screen.getByPlaceholderText(labelText);
+
+      userEvent.type(searchInput, 'l');
+
+      screen.getByText(
+        'Hacen falta 3 carácteres para iniciar la búsqueda... ;-)'
+      );
+    });
   });
 });
