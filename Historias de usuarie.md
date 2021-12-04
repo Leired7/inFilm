@@ -113,15 +113,15 @@ Se pondrá "·" para marcar los espacios en blanco en los ejemplos
   => Se le notifica a Irantzu que la longitud mínima son 3 caracteres.
   => Se muestran las 20 pelis más recientes.
 
-- [ ] Hecho
+- [x] Hecho
 
-**Ejemplo R4:**
+**Ejemplo R4.2:**
 
 - lo espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.
-- Irantzu escribe '···l····e····'
-  => Se muestran las pelis que coincidan con 'l e'
+- Irantzu escribe '···a····le····'
+  => Se muestran las pelis que coincidan con 'a l'
 
-- [ ] Hecho
+- [x] Hecho
 
 > R5 Se ignoran las mayúsculas y minúsculas
 

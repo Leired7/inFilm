@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 import popularFilms from './mocks/popular_movie.json';
 import { server } from './mocks/server';
@@ -85,11 +85,21 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     expect(images.length).toBe(2);
   });
 
-  it('Los espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
+  it('R4.1: Los espacios laterales superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
     userEvent.type(searchInput, '   f ');
 
     screen.getByText(
       'Hacen falta 3 carácteres diferentes al espacio para iniciar la búsqueda... 😉'
     );
+  });
+
+  it('R4.2: Los espacios interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
+    userEvent.type(searchInput, '   a    le    ');
+
+    const images = await screen.findAllByRole('img', {
+      name: 'Shang-Chi y la leyenda de los Diez Anillos',
+    });
+
+    expect(images.length).toBe(1);
   });
 });
