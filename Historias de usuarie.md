@@ -40,7 +40,7 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 
 - El término de búsqueda tiene una longitud superior o igual a 3 caracteres.
 
-- Irantzu escribe 'fue' en el buscador => Se muestran las pelis que coincidan con la búsqueda.
+- Irantzu escribe 'ley' en el buscador => Se muestran las pelis que coincidan con la búsqueda.
 
 **Ejemplo R1:**
 
@@ -57,8 +57,8 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 **Ejemplo R2:**
 
 - Se muestran las pelis cuya etiqueta coincide exactamente con el término de búsqueda
-- Irantzu escribe 'fuerza' en el buscador
-  => Se devuelven las pelis cuya etiqueta coincida exactamente con 'fuerza'
+- Irantzu escribe 'leyenda' en el buscador
+  => Se devuelven las pelis cuya etiqueta coincida exactamente con 'leyenda'
 
 **Ejemplo R2:**
 
@@ -73,13 +73,13 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 **Ejemplo R3:**
 
 - Se muestran las pelis cuya etiqueta coincide parcialmente con el término de búsqueda
-- Irantzu escribe 'fuerza' en el buscador
-  => Se devuelven las pelis cuya etiqueta coincida parcialmente con 'fuerza'
+- Irantzu escribe 'leyenda' en el buscador
+  => Se devuelven las pelis cuya etiqueta coincida parcialmente con 'leyenda'
 
 **Ejemplo R3:**
 
 - No hay pelis cuya etiqueta coincida parcialmente con el término de búsqueda
-- Irantzu escribe 'fuerza' en el buscador
+- Irantzu escribe 'leyenda' en el buscador
   => Se notifica a Irantzu que no se encuentran resultados
 
 - [ ] Hecho
@@ -89,8 +89,8 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 **Ejemplo R4:**
 
 - Se muestran las pelis cuya etiqueta coincida sin tener en cuenta los espacios laterales o interiores superiores a 1.
-- Irantzu escribe ' fuerza demonio '
-  => Se muestran las pelis que coincidan con 'fuerza demonio'
+- Irantzu escribe ' leyenda demonio '
+  => Se muestran las pelis que coincidan con 'leyenda demonio'
 
 **Ejemplo R4:**
 
@@ -102,15 +102,15 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 **Ejemplo R4:**
 
 - lo espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.
-- Irantzu escribe '···f····u····'
-  => Se muestran las pelis que coincidan con 'f u'
+- Irantzu escribe '···l····e····'
+  => Se muestran las pelis que coincidan con 'l e'
 
 - [ ] Hecho
 
 > R5 Se ignoran las mayúsculas y minúsculas
 
-- Irantzu escribe 'FuErZa'
-  => Se muestran las pelis que coincidan con 'fuerza'
+- Irantzu escribe 'LeyENdA'
+  => Se muestran las pelis que coincidan con 'leyenda'
 
 - [ ] Hecho
 
