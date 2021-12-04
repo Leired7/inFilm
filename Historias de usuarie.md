@@ -44,7 +44,7 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 
   => Se muestran las pelis que coincidan con la búsqueda.
 
-- [ ] Hecho
+- [x] Hecho
 
 **Ejemplo R1:**
 
