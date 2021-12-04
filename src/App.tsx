@@ -57,7 +57,7 @@ function App() {
           }}
         />
       </label>
-      {filteredFilms.length < 3 && (
+      {filter.length > 0 && filter.length < 3 && (
         <p>Hacen falta 3 carácteres para iniciar la búsqueda... ;-)</p>
       )}
       <HomeContainer
