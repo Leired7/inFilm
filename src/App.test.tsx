@@ -7,9 +7,10 @@ import { rest } from 'msw';
 import userEvent from '@testing-library/user-event';
 
 describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
-  test('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
+  beforeEach(() => {
     render(<App />);
-
+  });
+  test('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
     const loadingMessage = /Cargando.../i;
 
     screen.queryByText(loadingMessage);
@@ -24,16 +25,12 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
       )
     );
 
-    render(<App />);
-
     const dontShowMessage =
       /no se han podido mostrar las 50 películas más vistas/i;
 
     screen.queryByText(dontShowMessage);
   });
   test('Muestra la carátula de las 20 películas más vistas', async () => {
-    render(<App />);
-
     for (let film of popularFilms.results) {
       await screen.findByRole('img', {
         name: `${film.title}`,
@@ -43,54 +40,38 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 });
 
 describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis que me interesan PARA compartirlas en mis redes sociales', () => {
-  describe('La longitud de un término de búsqueda para que devuelva resultados es de 3 caracteres', () => {
-    it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
-      render(<App />);
+  let searchInput: any;
+  beforeEach(() => {
+    render(<App />);
 
-      const labelText = /¿Qué quieres buscar hoy?/i;
-      screen.getByLabelText(labelText);
+    const labelText = /¿Qué quieres buscar hoy?/i;
+    screen.getByLabelText(labelText);
 
-      const searchInput = screen.getByPlaceholderText(labelText);
+    searchInput = screen.getByPlaceholderText(labelText);
+  });
+  it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
+    userEvent.type(searchInput, 'l');
 
-      userEvent.type(searchInput, 'l');
+    screen.getByText(
+      'Hacen falta 3 carácteres para iniciar la búsqueda... ;-)'
+    );
+  });
 
-      screen.getByText(
-        'Hacen falta 3 carácteres para iniciar la búsqueda... ;-)'
-      );
-    });
+  it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
+    userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
 
-    it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
-      render(<App />);
-      const labelText = /¿Qué quieres buscar hoy?/i;
+    const images = await screen.findAllByRole('img');
 
-      const searchInput = screen.getByPlaceholderText(labelText);
-
-      userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
-
-      const images = await screen.findAllByRole('img');
-
-      expect(images.length).toBe(1);
-    });
+    expect(images.length).toBe(1);
   });
 
   test('No hay pelis cuya etiqueta coincida exactamente con el término de búsqueda', async () => {
-    render(<App />);
-    const labelText = /¿Qué quieres buscar hoy?/i;
-
-    const searchInput = screen.getByPlaceholderText(labelText);
-
     userEvent.type(searchInput, 'Alien');
 
     screen.getByText('Ohhhh no encontramos lo que buscabas 😔');
   });
 
   test('Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda', async () => {
-    render(<App />);
-
-    const labelText = /¿Qué quieres buscar hoy?/i;
-
-    const searchInput = screen.getByPlaceholderText(labelText);
-
     userEvent.type(searchInput, 'roj');
 
     const images = await screen.findAllByRole('img');
