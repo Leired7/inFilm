@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import './App.css';
 import { HomeContainer } from './components/HomeContainer/Home';
 
@@ -38,6 +38,10 @@ function App() {
     }
   }, []);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.currentTarget.value);
+  };
+
   return (
     <main>
       <label htmlFor="busqueda">
@@ -46,10 +50,10 @@ function App() {
           id="busqueda"
           placeholder="¿Qué quieres buscar hoy?"
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={handleChange}
         />
       </label>
-      {searchText.length < 3 && (
+      {searchText && searchText.length < 3 && (
         <p>Hacen falta 3 carácteres para iniciar la búsqueda... ;-)</p>
       )}
       <HomeContainer error={error} loading={loading} filmsInfo={filmsInfo} />
