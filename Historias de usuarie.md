@@ -79,8 +79,10 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 **Ejemplo R3:**
 
 - Se muestran las pelis cuya etiqueta coincide parcialmente con el término de búsqueda
-- Irantzu escribe 'le' en el buscador
-  => Se devuelven las pelis cuya etiqueta coincida parcialmente con 'le'
+- Irantzu escribe 'roj' en el buscador
+  => Se devuelven las pelis cuya etiqueta coincida parcialmente con 'roj'
+
+- [x] Hecho
 
 **Ejemplo R3:**
 
@@ -88,7 +90,7 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 - Irantzu escribe 'leyenda' en el buscador
   => Se notifica a Irantzu que no se encuentran resultados
 
-- [ ] Hecho
+- [x] Hecho
 
 > R4 Se ignoran los espacios laterales y los espacios interiores mayores que 1 del término de búsqueda.
 
@@ -98,12 +100,16 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 - Irantzu escribe ' leyenda demonio '
   => Se muestran las pelis que coincidan con 'leyenda demonio'
 
+- [ ] Hecho
+
 **Ejemplo R4:**
 
 - los espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.
 - Irantzu escribe '···f··'
   => Se le notifica a Irantzu que la longitud mínima son 3 caracteres.
   => Se muestran las 20 pelis más recientes.
+
+- [ ] Hecho
 
 **Ejemplo R4:**
 
