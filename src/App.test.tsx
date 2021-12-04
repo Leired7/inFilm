@@ -58,5 +58,18 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
         'Hacen falta 3 carácteres para iniciar la búsqueda... ;-)'
       );
     });
+
+    it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
+      render(<App />);
+      const labelText = /¿Qué quieres buscar hoy?/i;
+
+      const searchInput = screen.getByPlaceholderText(labelText);
+
+      userEvent.type(searchInput, 'leyenda');
+
+      const images = await screen.findAllByRole('img', {});
+
+      expect(images.length).toBe(1);
+    });
   });
 });
