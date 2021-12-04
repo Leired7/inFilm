@@ -44,7 +44,7 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 
 describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis que me interesan PARA compartirlas en mis redes sociales', () => {
   describe('La longitud de un término de búsqueda para que devuelva resultados es de 3 caracteres', () => {
-    it('El término de búsqueda es inferior a 3 caracteres.', () => {
+    it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
       render(<App />);
 
       const labelText = /¿Qué quieres buscar hoy?/i;
