@@ -64,10 +64,12 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 - Irantzu escribe 'leyenda' en el buscador
   => Se devuelven las pelis cuya etiqueta coincida exactamente con 'leyenda'
 
-**Ejemplo R2:**
+- [x] Hecho
+
+**Ejemplo R2.1:**
 
 - No hay pelis cuya etiqueta coincida exactamente con el término de búsqueda
-- Irantzu escribe 'viernes' en el buscador
+- Irantzu escribe 'Alien' en el buscador
   => Se notifica a Irantzu que no se encuentran resultados
 
 - [ ] Hecho
