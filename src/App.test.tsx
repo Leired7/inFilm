@@ -102,4 +102,14 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     expect(images.length).toBe(1);
   });
+
+  it('Se ignoran mayúsculas y minúsuclas', async () => {
+    userEvent.type(searchInput, 'LeyENdA');
+
+    const images = await screen.findAllByRole('img', {
+      name: 'Shang-Chi y la leyenda de los Diez Anillos',
+    });
+
+    expect(images.length).toBe(1);
+  });
 });
