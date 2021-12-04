@@ -43,14 +43,15 @@ function App() {
   const formatedFilter: string = textToFilter
     .split(' ')
     .filter((substring) => substring)
-    .join(' ');
+    .join(' ')
+    .toLowerCase();
 
   const filteredFilms: infoFromFilm[] = fetchedInfo.filter(
     (item: infoFromFilm, index: number) => {
       const minimumCaractersToSearch = 3;
 
       if (formatedFilter.length >= minimumCaractersToSearch) {
-        return item.title.includes(formatedFilter);
+        return item.title.toLowerCase().includes(formatedFilter);
       }
       return item;
     }
