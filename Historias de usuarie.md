@@ -15,7 +15,7 @@
 
 - Irantzu accede a InFilm. => Se muestra un error.
 
-- [ ] Hecho
+- [x] Hecho
 
 **Ejemplo R1:**
 
@@ -23,7 +23,7 @@
 
 - Irantzu accede a InFilm. => Se ven las 20 pelis más vistas
 
-- [ ] Hecho
+- [x] Hecho
 
 ---
 
