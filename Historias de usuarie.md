@@ -36,7 +36,7 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 
 > R1 La longitud de un término de búsqueda para que devuelva resultados es de 3 caracteres
 
-**Ejemplo R1:**
+**Ejemplo R1.1:**
 
 - El término de búsqueda tiene una longitud superior o igual a 3 caracteres.
 
@@ -50,7 +50,7 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
   => Se le notifica a Irantzu que la longitud mínima para iniciar la búsqueda son 3 caracteres.
   => Se muestran las 20 pelis más recientes.
 
-- [ ] Hecho
+- [x] Hecho
 
 > R2 Serán parte del resultado de búsqueda aquellas pelis con etiqueta idéntica al término de búsqueda
 
