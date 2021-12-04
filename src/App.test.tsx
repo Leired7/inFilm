@@ -67,7 +67,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
       userEvent.type(searchInput, 'leyenda');
 
-      const images = await screen.findAllByRole('img', {});
+      const images = await screen.findAllByRole('img');
 
       expect(images.length).toBe(1);
     });
