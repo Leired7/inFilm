@@ -63,6 +63,9 @@ function App() {
       {filter.length > 0 && filter.length < 3 && (
         <p>Hacen falta 3 carácteres para iniciar la búsqueda... ;-)</p>
       )}
+      {filteredFilms.length === 0 && (
+        <p>Ohhhh no encontramos lo que buscabas 😔</p>
+      )}
       <HomeContainer
         error={error}
         loading={loading}
