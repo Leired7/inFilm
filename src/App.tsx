@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { HomeContainer } from './components/HomeContainer/Home';
+import { SearchBar } from './components/SearchBar/SearchBar';
 
 export interface infoFromFilm {
   backdrop_path: string;
@@ -49,23 +50,7 @@ function App() {
 
   return (
     <main>
-      <label htmlFor="busqueda">
-        ¿Qué quieres buscar hoy?
-        <input
-          id="busqueda"
-          placeholder="¿Qué quieres buscar hoy?"
-          value={filter}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setFilter(event.currentTarget.value);
-          }}
-        />
-      </label>
-      {filter.length > 0 && filter.length < 3 && (
-        <p>Hacen falta 3 carácteres para iniciar la búsqueda... ;-)</p>
-      )}
-      {filteredFilms.length === 0 && (
-        <p>Ohhhh no encontramos lo que buscabas 😔</p>
-      )}
+      <SearchBar filter={filter} setFilter={setFilter} />
       <HomeContainer
         error={error}
         loading={loading}
