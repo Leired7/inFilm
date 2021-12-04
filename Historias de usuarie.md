@@ -96,9 +96,13 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 
 **Ejemplo R4:**
 
+_Antecedentes_
+
+Se pondrá "·" para marcar los espacios en blanco en los ejemplos
+
 - Se muestran las pelis cuya etiqueta coincida sin tener en cuenta los espacios laterales o interiores superiores a 1.
-- Irantzu escribe ' leyenda demonio '
-  => Se muestran las pelis que coincidan con 'leyenda demonio'
+- Irantzu escribe '··roj'
+  => Se muestran las pelis que coincidan con '··roj'
 
 - [ ] Hecho
 

@@ -78,4 +78,12 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     expect(images.length).toBe(2);
   });
+
+  test('Se ignoran los espacios laterales y los espacios interiores mayores que 1 del término de búsqueda.', async () => {
+    userEvent.type(searchInput, '  roj');
+
+    const images = await screen.findAllByRole('img');
+
+    expect(images.length).toBe(2);
+  });
 });
