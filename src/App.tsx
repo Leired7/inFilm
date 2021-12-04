@@ -11,7 +11,7 @@ export interface infoFromFilm {
 export interface fetchedInfo {
   error: boolean;
   loading: boolean;
-  fetchedInfo: infoFromFilm[];
+  filteredFilms: infoFromFilm[];
 }
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  const [filter, setFilter] = useState<string>('');
+  const [textToFilter, setTextToFilter] = useState<string>('');
 
   useEffect(() => {
     try {
@@ -39,18 +39,17 @@ function App() {
     }
   }, []);
 
-  const removeSpaces = (string: string): string => {
-    return string.split('  ').join('');
-  };
+  const formatedFilter: string = textToFilter
+    .split(' ')
+    .filter((substring) => substring)
+    .join(' ');
 
-  const filteredFilms = fetchedInfo.filter(
+  const filteredFilms: infoFromFilm[] = fetchedInfo.filter(
     (item: infoFromFilm, index: number) => {
       const minimumCaractersToSearch = 3;
 
-      if (filter.length >= minimumCaractersToSearch) {
-        const withoutBlankSpaces = removeSpaces(filter);
-
-        return item.title.includes(withoutBlankSpaces);
+      if (formatedFilter.length >= minimumCaractersToSearch) {
+        return item.title.includes(formatedFilter);
       }
       return item;
     }
@@ -58,11 +57,14 @@ function App() {
 
   return (
     <main>
-      <SearchBar filter={filter} setFilter={setFilter} />
+      <SearchBar
+        textToFilter={textToFilter}
+        setTextToFilter={setTextToFilter}
+      />
       <HomeContainer
         error={error}
         loading={loading}
-        fetchedInfo={filteredFilms}
+        filteredFilms={filteredFilms}
       />
     </main>
   );
