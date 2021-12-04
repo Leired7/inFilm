@@ -5,7 +5,7 @@ import popularFilms from './mocks/popular_movie.json';
 import { server } from './mocks/server';
 import { rest } from 'msw';
 
-describe('Historia de usuarie 1: "poder ver la portada de las 20 pelis más vistas para elegir pelis para echar la siesta"', () => {
+describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
   test('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
     render(<App />);
 
@@ -38,5 +38,13 @@ describe('Historia de usuarie 1: "poder ver la portada de las 20 pelis más vist
         name: `${film.title}`,
       });
     }
+  });
+});
+
+describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis que me interesan PARA compartirlas en mis redes sociales', () => {
+  it('La longitud de un término de búsqueda para que devuelva resultados es de 3 caracteres', () => {
+    render(<App />);
+
+    screen.getByRole('input', { name: '¿qué quieres buscar hoy?' });
   });
 });
