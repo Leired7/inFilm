@@ -104,7 +104,7 @@ Se pondrá "·" para marcar los espacios en blanco en los ejemplos
 - Irantzu escribe '··roj'
   => Se muestran las pelis que coincidan con '··roj'
 
-- [ ] Hecho
+- [x] Hecho
 
 **Ejemplo R4:**
 

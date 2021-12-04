@@ -39,12 +39,18 @@ function App() {
     }
   }, []);
 
+  const removeSpaces = (string: string): string => {
+    return string.split('  ').join('');
+  };
+
   const filteredFilms = fetchedInfo.filter(
     (item: infoFromFilm, index: number) => {
       const minimumCaractersToSearch = 3;
 
       if (filter.length >= minimumCaractersToSearch) {
-        return item.title.includes(filter);
+        const withoutBlankSpaces = removeSpaces(filter);
+
+        return item.title.includes(withoutBlankSpaces);
       }
       return item;
     }
