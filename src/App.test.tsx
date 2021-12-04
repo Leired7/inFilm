@@ -72,4 +72,15 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
       expect(images.length).toBe(1);
     });
   });
+
+  test('No hay pelis cuya etiqueta coincida exactamente con el término de búsqueda', async () => {
+    render(<App />);
+    const labelText = /¿Qué quieres buscar hoye/i;
+
+    const searchInput = screen.getByPlaceholderText(labelText);
+
+    userEvent.type(searchInput, 'Alien');
+
+    screen.getByText('Ohhhh no encontramos lo que buscabas 😔');
+  });
 });
