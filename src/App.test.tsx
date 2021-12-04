@@ -45,6 +45,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   it('La longitud de un término de búsqueda para que devuelva resultados es de 3 caracteres', () => {
     render(<App />);
 
-    screen.getByLabelText('¿qué quieres buscar hoy?');
+    const labelText = /¿Qué quieres buscar hoy?/i;
+    screen.getByLabelText(labelText);
   });
 });
