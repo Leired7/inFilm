@@ -10,12 +10,12 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
   beforeEach(() => {
     render(<App />);
   });
-  test('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
+  it('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
     const loadingMessage = /Cargando.../i;
 
     screen.queryByText(loadingMessage);
   });
-  test('No muestra las 50 pelis más vistas', () => {
+  it('No muestra las 50 pelis más vistas', () => {
     server.use(
       rest.get(
         'https://api.themoviedb.org/3/movie/popular',
@@ -30,7 +30,7 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 
     screen.queryByText(dontShowMessage);
   });
-  test('Muestra la carátula de las 20 películas más vistas', async () => {
+  it('Muestra la carátula de las 20 películas más vistas', async () => {
     for (let film of popularFilms.results) {
       await screen.findByRole('img', {
         name: `${film.title}`,
@@ -49,13 +49,13 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     searchInput = screen.getByPlaceholderText(labelText);
   });
-  test('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
+  it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
     userEvent.type(searchInput, 'l');
 
     screen.getByText('Hacen falta 3 carácteres para iniciar la búsqueda... 😉');
   });
 
-  test('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
+  it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
     userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
 
     const images = await screen.findAllByRole('img');
@@ -63,13 +63,13 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     expect(images.length).toBe(1);
   });
 
-  test('No hay pelis cuya etiqueta coincida exactamente con el término de búsqueda', async () => {
+  it('No hay pelis cuya etiqueta coincida exactamente con el término de búsqueda', async () => {
     userEvent.type(searchInput, 'Alien');
 
     screen.getByText('Ohhhh no encontramos lo que buscabas 😔');
   });
 
-  test('Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda', async () => {
+  it('Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda', async () => {
     userEvent.type(searchInput, 'roj');
 
     const images = await screen.findAllByRole('img');
@@ -77,7 +77,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     expect(images.length).toBe(2);
   });
 
-  test('Se ignoran los espacios laterales y los espacios interiores mayores que 1 del término de búsqueda.', async () => {
+  it('Se ignoran los espacios laterales y los espacios interiores mayores que 1 del término de búsqueda.', async () => {
     userEvent.type(searchInput, '  roj');
 
     const images = await screen.findAllByRole('img');
@@ -85,7 +85,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     expect(images.length).toBe(2);
   });
 
-  test('Los espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
+  it('Los espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
     userEvent.type(searchInput, '   f ');
 
     screen.getByText(
