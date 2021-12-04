@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { HomeContainer } from './components/HomeContainer/Home';
 
