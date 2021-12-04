@@ -12,15 +12,13 @@ export const SearchBar = (props: any) => {
           }}
         />
       </label>
-      {props.textToFilter.length > 0 && props.textToFilter.length < 3 && (
-        <p>Te faltan 2 carácteres para iniciar la búsqueda... 😉</p>
-      )}
-      {props.formatedFilter.length < 3 && (
-        <p>
-          Hacen falta 3 carácteres diferentes al espacio para iniciar la
-          búsqueda... 😉
-        </p>
-      )}
+      {props.formatedFilter.length !== 0 &&
+        props.formatedFilter.length <= 3 && (
+          <p>
+            Hacen falta 3 carácteres diferentes al espacio para iniciar la
+            búsqueda... 😉
+          </p>
+        )}
     </form>
   );
 };

@@ -52,7 +52,9 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
     userEvent.type(searchInput, 'l');
 
-    screen.getByText('Te faltan 2 carácteres para iniciar la búsqueda... 😉');
+    screen.getByText(
+      'Hacen falta 3 carácteres diferentes al espacio para iniciar la búsqueda... 😉'
+    );
   });
 
   it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
