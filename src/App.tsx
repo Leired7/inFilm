@@ -38,9 +38,11 @@ function App() {
     }
   }, []);
 
-  const filteredFilms = filmsInfo.map((item: infoFromFilm, index: number) => {
-    return filter.length < 3;
-  });
+  const filteredFilms = filmsInfo.filter(
+    (item: infoFromFilm, index: number) => {
+      return item.title.includes(filter);
+    }
+  );
 
   return (
     <main>
@@ -55,10 +57,14 @@ function App() {
           }}
         />
       </label>
-      {filteredFilms && (
+      {filteredFilms.length < 3 && (
         <p>Hacen falta 3 carácteres para iniciar la búsqueda... ;-)</p>
       )}
-      <HomeContainer error={error} loading={loading} filmsInfo={filmsInfo} />
+      <HomeContainer
+        error={error}
+        loading={loading}
+        filmsInfo={filteredFilms}
+      />
     </main>
   );
 }
