@@ -128,7 +128,7 @@ Se pondrá "·" para marcar los espacios en blanco en los ejemplos
 - Irantzu escribe 'LeyENdA'
   => Se muestran las pelis que coincidan con 'leyenda'
 
-- [ ] Hecho
+- [x] Hecho
 
 > R8a El resultado de búsqueda estará ordenado de más a menos reciente
 
