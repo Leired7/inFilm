@@ -49,15 +49,13 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     searchInput = screen.getByPlaceholderText(labelText);
   });
-  it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
+  test('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
     userEvent.type(searchInput, 'l');
 
-    screen.getByText(
-      'Hacen falta 3 carácteres para iniciar la búsqueda... ;-)'
-    );
+    screen.getByText('Hacen falta 3 carácteres para iniciar la búsqueda... 😉');
   });
 
-  it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
+  test('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
     userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
 
     const images = await screen.findAllByRole('img');
@@ -85,5 +83,13 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     const images = await screen.findAllByRole('img');
 
     expect(images.length).toBe(2);
+  });
+
+  test('Los espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
+    userEvent.type(searchInput, '   f ');
+
+    screen.getByText(
+      'Hacen falta 3 carácteres diferentes al espacio para iniciar la búsqueda... 😉'
+    );
   });
 });

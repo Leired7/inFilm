@@ -106,7 +106,7 @@ Se pondrá "·" para marcar los espacios en blanco en los ejemplos
 
 - [x] Hecho
 
-**Ejemplo R4:**
+**Ejemplo R4.1:**
 
 - los espacios laterales o interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.
 - Irantzu escribe '···f··'
