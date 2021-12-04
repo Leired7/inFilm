@@ -15,8 +15,10 @@ export interface fetchedInfo {
 
 function App() {
   const [filmsInfo, setFilmInfo] = useState<Array<infoFromFilm>>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+
+  const [searchText, setSearchText] = useState<string>('');
 
   useEffect(() => {
     try {
@@ -40,8 +42,16 @@ function App() {
     <main>
       <label htmlFor="busqueda">
         ¿Qué quieres buscar hoy?
-        <input id="busqueda" />
+        <input
+          id="busqueda"
+          placeholder="¿Qué quieres buscar hoy?"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
       </label>
+      {searchText.length < 3 && (
+        <p>Hacen falta 3 carácteres para iniciar la búsqueda... ;-)</p>
+      )}
       <HomeContainer error={error} loading={loading} filmsInfo={filmsInfo} />
     </main>
   );
