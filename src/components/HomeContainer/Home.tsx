@@ -19,11 +19,17 @@ export const HomeContainer = (props: fetchedInfo) => {
     <>
       {props.filteredFilms.map((item: infoFromFilm, index: number) => {
         return (
-          <img
-            key={index}
-            src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-            alt={item.title}
-          />
+          <>
+            <figure>
+              <img
+                key={index}
+                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                alt={item.title}
+              />
+              <figcaption>{item.title}</figcaption>
+            </figure>
+            <p>{item.release_date}</p>
+          </>
         );
       })}
     </>

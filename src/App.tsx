@@ -4,8 +4,9 @@ import { HomeContainer } from './components/HomeContainer/Home';
 import { SearchBar } from './components/SearchBar/SearchBar';
 
 export interface infoFromFilm {
-  backdrop_path: string;
+  poster_path: string;
   title: string;
+  release_date: string;
 }
 
 export interface fetchedInfo {
