@@ -75,7 +75,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
   test('No hay pelis cuya etiqueta coincida exactamente con el término de búsqueda', async () => {
     render(<App />);
-    const labelText = /¿Qué quieres buscar hoye/i;
+    const labelText = /¿Qué quieres buscar hoy?/i;
 
     const searchInput = screen.getByPlaceholderText(labelText);
 
