@@ -83,4 +83,18 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     screen.getByText('Ohhhh no encontramos lo que buscabas 😔');
   });
+
+  test('Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda', async () => {
+    render(<App />);
+
+    const labelText = /¿Qué quieres buscar hoy?/i;
+
+    const searchInput = screen.getByPlaceholderText(labelText);
+
+    userEvent.type(searchInput, 'roj');
+
+    const images = await screen.findAllByRole('img');
+
+    expect(images.length).toBe(2);
+  });
 });
