@@ -72,15 +72,15 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 - Irantzu escribe 'Alien' en el buscador
   => Se notifica a Irantzu que no se encuentran resultados
 
-- [ ] Hecho
+- [x] Hecho
 
 > R3 Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda
 
 **Ejemplo R3:**
 
 - Se muestran las pelis cuya etiqueta coincide parcialmente con el término de búsqueda
-- Irantzu escribe 'leyenda' en el buscador
-  => Se devuelven las pelis cuya etiqueta coincida parcialmente con 'leyenda'
+- Irantzu escribe 'le' en el buscador
+  => Se devuelven las pelis cuya etiqueta coincida parcialmente con 'le'
 
 **Ejemplo R3:**
 
