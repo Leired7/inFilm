@@ -40,7 +40,10 @@ function App() {
 
   const filteredFilms = filmsInfo.filter(
     (item: infoFromFilm, index: number) => {
-      return item.title.includes(filter);
+      if (filter.length >= 3) {
+        return item.title === filter;
+      }
+      return item;
     }
   );
 

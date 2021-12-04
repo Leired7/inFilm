@@ -40,7 +40,11 @@ Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más
 
 - El término de búsqueda tiene una longitud superior o igual a 3 caracteres.
 
-- Irantzu escribe 'ley' en el buscador => Se muestran las pelis que coincidan con la búsqueda.
+- Irantzu escribe 'Shang-Chi y la leyenda de los Diez Anillos' en el buscador
+
+  => Se muestran las pelis que coincidan con la búsqueda.
+
+- [ ] Hecho
 
 **Ejemplo R1:**
 

@@ -65,7 +65,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
       const searchInput = screen.getByPlaceholderText(labelText);
 
-      userEvent.type(searchInput, 'leyenda');
+      userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
 
       const images = await screen.findAllByRole('img');
 
