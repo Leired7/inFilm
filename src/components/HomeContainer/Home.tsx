@@ -11,13 +11,13 @@ export const HomeContainer = (props: fetchedInfo) => {
     return <h1>Cargando...</h1>;
   }
 
-  if (props.filmsInfo.length === 0) {
+  if (props.fetchedInfo.length === 0) {
     return <p>Ohhhh no encontramos lo que buscabas 😔</p>;
   }
 
   return (
     <>
-      {props.filmsInfo.map((item: infoFromFilm, index: number) => {
+      {props.fetchedInfo.map((item: infoFromFilm, index: number) => {
         return (
           <img
             key={index}

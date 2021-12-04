@@ -11,11 +11,11 @@ export interface infoFromFilm {
 export interface fetchedInfo {
   error: boolean;
   loading: boolean;
-  filmsInfo: infoFromFilm[];
+  fetchedInfo: infoFromFilm[];
 }
 
 function App() {
-  const [filmsInfo, setFilmInfo] = useState<Array<infoFromFilm>>([]);
+  const [fetchedInfo, setfetchedInfo] = useState<Array<infoFromFilm>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -29,7 +29,7 @@ function App() {
         );
 
         const data = await response.json();
-        setFilmInfo(data.results);
+        setfetchedInfo(data.results);
       };
       popularFilms();
     } catch (error) {
@@ -39,9 +39,11 @@ function App() {
     }
   }, []);
 
-  const filteredFilms = filmsInfo.filter(
+  const filteredFilms = fetchedInfo.filter(
     (item: infoFromFilm, index: number) => {
-      if (filter.length >= 3) {
+      const minimumCaractersToSearch = 3;
+
+      if (filter.length >= minimumCaractersToSearch) {
         return item.title.includes(filter);
       }
       return item;
@@ -54,7 +56,7 @@ function App() {
       <HomeContainer
         error={error}
         loading={loading}
-        filmsInfo={filteredFilms}
+        fetchedInfo={filteredFilms}
       />
     </main>
   );
