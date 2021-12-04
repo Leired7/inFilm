@@ -18,7 +18,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  const [searchText, setSearchText] = useState<string>('');
+  const [filter, setFilter] = useState<string>('');
 
   useEffect(() => {
     try {
@@ -38,9 +38,9 @@ function App() {
     }
   }, []);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.currentTarget.value);
-  };
+  const filteredFilms = filmsInfo.map((item: infoFromFilm, index: number) => {
+    return filter.length < 3;
+  });
 
   return (
     <main>
@@ -49,11 +49,13 @@ function App() {
         <input
           id="busqueda"
           placeholder="¿Qué quieres buscar hoy?"
-          value={searchText}
-          onChange={handleChange}
+          value={filter}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setFilter(event.currentTarget.value);
+          }}
         />
       </label>
-      {searchText && searchText.length < 3 && (
+      {filteredFilms && (
         <p>Hacen falta 3 carácteres para iniciar la búsqueda... ;-)</p>
       )}
       <HomeContainer error={error} loading={loading} filmsInfo={filmsInfo} />
