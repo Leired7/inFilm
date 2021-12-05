@@ -5,6 +5,9 @@ import { SearchBar } from './ui/components/SearchBar/SearchBar';
 
 import { InfoFromFilm } from './core/dominio/model';
 
+import { ApiRepository } from './core/infraestructure/ApiRepository';
+import { fetchAllFilms } from './core/services/fetchAllFilms';
+
 function App() {
   const [fetchedInfo, setfetchedInfo] = useState<Array<InfoFromFilm>>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -16,18 +19,15 @@ function App() {
     /* Solution to memory leaks: https://www.wisdomgeek.com/development/web-development/react/avoiding-race-conditions-memory-leaks-react-useeffect/amp/?utm_source=pocket_mylist */
     let isComponentMounted = true;
     try {
-      const popularFilms = async () => {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular`
-        );
-
-        const data = await response.json();
-
+      const fetchPopularFilms = async () => {
+        const filmApiRepository = new ApiRepository();
         if (isComponentMounted) {
-          setfetchedInfo(data.results);
+          setfetchedInfo(await fetchAllFilms(filmApiRepository));
         }
       };
-      popularFilms();
+
+      fetchPopularFilms();
+
       return () => {
         isComponentMounted = false;
       };
