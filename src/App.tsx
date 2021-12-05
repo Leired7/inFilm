@@ -24,6 +24,8 @@ function App() {
   const [textToFilter, setTextToFilter] = useState<string>('');
 
   useEffect(() => {
+    /* Solution to memory leaks: https://www.wisdomgeek.com/development/web-development/react/avoiding-race-conditions-memory-leaks-react-useeffect/amp/?utm_source=pocket_mylist */
+    let isComponentMounted = true;
     try {
       const popularFilms = async () => {
         const response = await fetch(
@@ -31,9 +33,15 @@ function App() {
         );
 
         const data = await response.json();
-        setfetchedInfo(data.results);
+
+        if (isComponentMounted) {
+          setfetchedInfo(data.results);
+        }
       };
       popularFilms();
+      return () => {
+        isComponentMounted = false;
+      };
     } catch (error) {
       setError(true);
     } finally {
