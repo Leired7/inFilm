@@ -105,7 +105,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     expect(images.length).toBe(1);
   });
 
-  it('Se ignoran mayúsculas y minúsuclas', async () => {
+  it('Se ignoran mayúsculas y minúsculas', async () => {
     userEvent.type(searchInput, 'LeyENdA');
 
     const images = await screen.findAllByRole('img', {
