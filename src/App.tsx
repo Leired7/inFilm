@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { HomeContainer } from './components/HomeContainer/Home';
-import { SearchBar } from './components/SearchBar/SearchBar';
+import { ImageList } from './ui/components/ImageList/ImageList';
+import { SearchBar } from './ui/components/SearchBar/SearchBar';
 
-export interface infoFromFilm {
-  poster_path: string;
-  title: string;
-  release_date: string;
-}
+import { InfoFromFilm } from './core/dominio/model';
 
-export interface fetchedInfo {
-  error: boolean;
-  loading: boolean;
-  filteredFilms: infoFromFilm[];
-  formatedFilter: string;
-}
+import { ApiRepository } from './core/infraestructure/ApiRepository';
+import { fetchAllFilms } from './core/services/fetchAllFilms';
 
 function App() {
-  const [fetchedInfo, setfetchedInfo] = useState<Array<infoFromFilm>>([]);
+  const [fetchedInfo, setfetchedInfo] = useState<Array<InfoFromFilm>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -27,18 +19,15 @@ function App() {
     /* Solution to memory leaks: https://www.wisdomgeek.com/development/web-development/react/avoiding-race-conditions-memory-leaks-react-useeffect/amp/?utm_source=pocket_mylist */
     let isComponentMounted = true;
     try {
-      const popularFilms = async () => {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular`
-        );
-
-        const data = await response.json();
-
+      const fetchPopularFilms = async () => {
+        const filmApiRepository = new ApiRepository();
         if (isComponentMounted) {
-          setfetchedInfo(data.results);
+          setfetchedInfo(await fetchAllFilms(filmApiRepository));
         }
       };
-      popularFilms();
+
+      fetchPopularFilms();
+
       return () => {
         isComponentMounted = false;
       };
@@ -55,8 +44,8 @@ function App() {
     .join(' ')
     .toLowerCase();
 
-  const filteredFilms: infoFromFilm[] = fetchedInfo.filter(
-    (item: infoFromFilm, index: number) => {
+  const filteredFilms: InfoFromFilm[] = fetchedInfo.filter(
+    (item: InfoFromFilm, index: number) => {
       const minimumCaractersToSearch = 3;
 
       if (formatedFilter.length >= minimumCaractersToSearch) {
@@ -73,7 +62,7 @@ function App() {
         setTextToFilter={setTextToFilter}
         formatedFilter={formatedFilter}
       />
-      <HomeContainer
+      <ImageList
         error={error}
         loading={loading}
         filteredFilms={filteredFilms}
