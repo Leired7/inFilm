@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { HomeContainer } from './components/HomeContainer/Home';
-import { SearchBar } from './components/SearchBar/SearchBar';
+import { ImageList } from './ui/components/ImageList/ImageList';
+import { SearchBar } from './ui/components/SearchBar/SearchBar';
 
 export interface infoFromFilm {
   poster_path: string;
@@ -73,7 +73,7 @@ function App() {
         setTextToFilter={setTextToFilter}
         formatedFilter={formatedFilter}
       />
-      <HomeContainer
+      <ImageList
         error={error}
         loading={loading}
         filteredFilms={filteredFilms}

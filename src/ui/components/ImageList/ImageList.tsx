@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { fetchedInfo, infoFromFilm } from '../../App';
+import { fetchedInfo, infoFromFilm } from '../../../App';
 
-export const HomeContainer = (props: fetchedInfo) => {
+export const ImageList = (props: fetchedInfo) => {
   if (props.error) {
     return <p>No se han podido mostrar las 50 películas más vistas</p>;
   }
