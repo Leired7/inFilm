@@ -1,4 +1,4 @@
-import { InfoFromFilm } from '../../dominio/model';
+import { InfoFromFilm } from '../../domain/model';
 
 export const Api = {
   getAllFilms: async (): Promise<InfoFromFilm[]> => {

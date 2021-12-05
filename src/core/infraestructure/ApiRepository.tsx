@@ -1,5 +1,5 @@
-import { InfoFromFilm } from '../dominio/model';
-import { FilmRepository } from '../dominio/model/FilmRepository';
+import { InfoFromFilm } from '../domain/model';
+import { FilmRepository } from '../domain/model/FilmRepository';
 import { Api } from './Api/Api';
 
 export class ApiRepository implements FilmRepository {

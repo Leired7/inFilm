@@ -1,4 +1,4 @@
-import { InfoFromFilm, FilmRepository } from '../dominio/model';
+import { InfoFromFilm, FilmRepository } from '../domain/model';
 
 export async function fetchAllFilms(
   filmRepository: FilmRepository
