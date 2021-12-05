@@ -20,10 +20,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "lint": "eslint src",
     "prettier:fix": "prettier --write src",
-    "prettier:check": "prettier --check src"
+    "prettier:check": "prettier --check src",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
