@@ -20,7 +20,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:watch": "react-scripts test --watchAll",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "prettier:fix": "prettier --write src",
+    "prettier:check": "prettier --check src",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +46,10 @@
     ]
   },
   "devDependencies": {
-    "msw": "0.35.0"
+    "husky": "7.0.4",
+    "lint-staged": "12.1.2",
+    "msw": "0.35.0",
+    "prettier": "2.5.1"
   },
   "msw": {
     "workerDirectory": "public"
