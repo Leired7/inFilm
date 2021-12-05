@@ -3,21 +3,10 @@ import './App.css';
 import { ImageList } from './ui/components/ImageList/ImageList';
 import { SearchBar } from './ui/components/SearchBar/SearchBar';
 
-export interface infoFromFilm {
-  poster_path: string;
-  title: string;
-  release_date: string;
-}
-
-export interface fetchedInfo {
-  error: boolean;
-  loading: boolean;
-  filteredFilms: infoFromFilm[];
-  formatedFilter: string;
-}
+import { InfoFromFilm } from './core/dominio/model';
 
 function App() {
-  const [fetchedInfo, setfetchedInfo] = useState<Array<infoFromFilm>>([]);
+  const [fetchedInfo, setfetchedInfo] = useState<Array<InfoFromFilm>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -55,8 +44,8 @@ function App() {
     .join(' ')
     .toLowerCase();
 
-  const filteredFilms: infoFromFilm[] = fetchedInfo.filter(
-    (item: infoFromFilm, index: number) => {
+  const filteredFilms: InfoFromFilm[] = fetchedInfo.filter(
+    (item: InfoFromFilm, index: number) => {
       const minimumCaractersToSearch = 3;
 
       if (formatedFilter.length >= minimumCaractersToSearch) {

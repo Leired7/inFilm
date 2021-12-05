@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { fetchedInfo, infoFromFilm } from '../../../App';
-
-export const ImageList = (props: fetchedInfo) => {
+import { InfoFromFilm, FetchedInfo } from '../../../core/dominio/model';
+export const ImageList = (props: FetchedInfo) => {
   if (props.error) {
     return <p>No se han podido mostrar las 50 películas más vistas</p>;
   }
@@ -17,7 +16,7 @@ export const ImageList = (props: fetchedInfo) => {
 
   return (
     <>
-      {props.filteredFilms.map((item: infoFromFilm, index: number) => {
+      {props.filteredFilms.map((item: InfoFromFilm, index: number) => {
         return (
           <div key={index}>
             <figure>
