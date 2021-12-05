@@ -3,7 +3,7 @@ import './App.css';
 import { ImageList } from './ui/components/ImageList/ImageList';
 import { SearchBar } from './ui/components/SearchBar/SearchBar';
 
-import { InfoFromFilm } from './core/dominio/model';
+import { InfoFromFilm } from './core/domain/model';
 
 import { ApiRepository } from './core/infraestructure/ApiRepository';
 import { fetchAllFilms } from './core/services/fetchAllFilms';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InfoFromFilm, FetchedInfo } from '../../../core/dominio/model';
+import { InfoFromFilm, FetchedInfo } from '../../../core/domain/model';
 export const ImageList = (props: FetchedInfo) => {
   if (props.error) {
     return <p>No se han podido mostrar las 50 películas más vistas</p>;
