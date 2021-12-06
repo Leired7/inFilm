@@ -36,6 +36,5 @@ export const reboot = css`
     color: ${color.black1};
     text-align: left; /* 3 */
     background-color: ${color.darkBlue}; /* 2 */
-    border: 10px solid ${color.golden};
   }
 `;
