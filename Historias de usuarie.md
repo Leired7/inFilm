@@ -153,3 +153,7 @@ Se pondrá "·" para marcar los espacios en blanco en los ejemplos
 - Si una etiqueta coincide parcialmente con el término de búsqueda: +1
 
   > R8b El resultado de búsqueda estará ordenado de mayor a menor peso primero y de más a menos reciente si el peso es idéntico.
+
+## Diseño
+
+[Dribble - Evgenia Gordeeva](https://dribbble.com/shots/9956355-SpeedyTV-Streaming-movie-search-engine-redesign/attachments/1991346?mode=media)
