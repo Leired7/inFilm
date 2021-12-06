@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
 import { InfoFromFilm } from '../../../core/domain/model';
 
 export interface FilmInfoProps {
@@ -31,18 +33,22 @@ export const ImageList: React.FC<FilmInfoProps> = ({
     <>
       {filteredFilms.map((item: InfoFromFilm, index: number) => {
         return (
-          <div key={index}>
+          <FilmCard key={index}>
             <figure>
-              <img
+              <Poster
                 src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                 alt={item.title}
               />
               <figcaption>{item.title}</figcaption>
             </figure>
             <p>{item.release_date}</p>
-          </div>
+          </FilmCard>
         );
       })}
     </>
   );
 };
+
+const FilmCard = styled.div``;
+
+const Poster = styled.img``;

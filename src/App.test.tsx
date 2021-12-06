@@ -44,7 +44,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   beforeEach(() => {
     render(<App />);
 
-    const labelText = /¿Qué quieres buscar hoy?/i;
+    const labelText = /Busca para 😴/i;
     screen.getByLabelText(labelText);
 
     searchInput = screen.getByPlaceholderText(labelText);
@@ -60,7 +60,9 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
     userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
 
-    const images = await screen.findAllByRole('img');
+    const images = await screen.findAllByRole('img', {
+      name: 'Shang-Chi y la leyenda de los Diez Anillos',
+    });
 
     expect(images.length).toBe(1);
   });
@@ -74,7 +76,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   it('Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda', async () => {
     userEvent.type(searchInput, 'roj');
 
-    const images = await screen.findAllByRole('img');
+    const images = await screen.findAllByRole('img', { name: /roj/i });
 
     expect(images.length).toBe(2);
   });
@@ -82,7 +84,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   it('Se ignoran los espacios laterales y los espacios interiores mayores que 1 del término de búsqueda.', async () => {
     userEvent.type(searchInput, '  roj');
 
-    const images = await screen.findAllByRole('img');
+    const images = await screen.findAllByRole('img', { name: /roj/i });
 
     expect(images.length).toBe(2);
   });
