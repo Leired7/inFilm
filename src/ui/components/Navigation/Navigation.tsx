@@ -1,8 +1,9 @@
+import styled from 'styled-components';
+
+import { sizes, color, media } from '../../theme';
 import { SearchBar } from '../SearchBar';
 
 import { SearchBarInfoProps } from '../SearchBar';
-
-import Logo from '../../../assets/inFilm_logo.png';
 
 export const Navigation: React.FC<SearchBarInfoProps> = ({
   textToFilter,
@@ -10,13 +11,45 @@ export const Navigation: React.FC<SearchBarInfoProps> = ({
   setTextToFilter,
 }) => {
   return (
-    <nav>
-      <img src={Logo} alt="Logo de inFilm" />
+    <MainNavigation>
+      <Name>
+        in<Highlight>Film</Highlight>
+      </Name>
       <SearchBar
         textToFilter={textToFilter}
         formatedFilter={formatedFilter}
         setTextToFilter={setTextToFilter}
       />
-    </nav>
+    </MainNavigation>
   );
 };
+
+const MainNavigation = styled.nav`
+  padding-bottom: ${sizes.huge};
+
+  ${media.tablet`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+  `}
+`;
+
+/* *************** */
+
+const Name = styled.p`
+  color: white;
+  font-weight: 700;
+
+  margin-bottom: ${sizes.small};
+
+  ${media.tablet`
+    margin: 0;
+  `}
+`;
+
+const Highlight = styled.span`
+  color: ${color.golden};
+  font-weight: 700;
+`;

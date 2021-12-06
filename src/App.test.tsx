@@ -44,7 +44,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   beforeEach(() => {
     render(<App />);
 
-    const labelText = /¿Qué quieres buscar hoy?/i;
+    const labelText = /Busca para 😴/i;
     screen.getByLabelText(labelText);
 
     searchInput = screen.getByPlaceholderText(labelText);
