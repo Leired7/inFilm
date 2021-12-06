@@ -2,7 +2,7 @@
   "name": "infilm",
   "version": "0.1.0",
   "private": true,
-  "homepage": " https://leired7.github.io",
+  "homepage": " https://leired7.github.io/inFilm",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -28,7 +28,9 @@
     "lint": "eslint src",
     "prettier:fix": "prettier --write src",
     "prettier:check": "prettier --check src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +53,7 @@
   "devDependencies": {
     "@types/styled-components": "5.1.16",
     "babel-plugin-styled-components": "2.0.2",
+    "gh-pages": "3.2.3",
     "husky": "7.0.4",
     "lint-staged": "12.1.2",
     "msw": "0.35.0",
