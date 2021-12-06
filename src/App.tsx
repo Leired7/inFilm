@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GlobalStyles } from './ui/theme/GlobalStyles';
 import { ImageList } from './ui/components/ImageList/ImageList';
-import { SearchBar } from './ui/components/SearchBar/SearchBar';
+import { Navigation } from './ui/components/Navigation/Navigation';
 
 import { InfoFromFilm } from './core/domain/model';
 import { ApiRepository } from './core/infraestructure/ApiRepository';
@@ -57,12 +57,12 @@ function App() {
   return (
     <>
       <GlobalStyles />
+      <Navigation
+        textToFilter={textToFilter}
+        setTextToFilter={setTextToFilter}
+        formatedFilter={formatedFilter}
+      />
       <main>
-        <SearchBar
-          textToFilter={textToFilter}
-          setTextToFilter={setTextToFilter}
-          formatedFilter={formatedFilter}
-        />
         <ImageList
           error={error}
           loading={loading}
