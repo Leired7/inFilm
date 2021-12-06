@@ -30,6 +30,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          REACT_APP_THEMOVIEDB_API_KEY: ${{ secrets.REACT_APP_THEMOVIEDB_API_KEY }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
@@ -53,6 +55,5 @@ jobs:
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          REACT_APP_THEMOVIEDB_API_KEY: ${{ secrets.REACT_APP_THEMOVIEDB_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
