@@ -8,7 +8,7 @@ import { ApiRepository } from './core/infraestructure/ApiRepository';
 import { fetchAllFilms } from './core/services/fetchAllFilms';
 
 function App() {
-  const [fetchedInfo, setfetchedInfo] = useState<Array<InfoFromFilm>>([]);
+  const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -21,7 +21,7 @@ function App() {
       const fetchPopularFilms = async () => {
         const filmApiRepository = new ApiRepository();
         if (isComponentMounted) {
-          setfetchedInfo(await fetchAllFilms(filmApiRepository));
+          setFetchedInfo(await fetchAllFilms(filmApiRepository));
         }
       };
 
