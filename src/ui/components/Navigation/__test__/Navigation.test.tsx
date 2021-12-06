@@ -15,6 +15,7 @@ describe('Comprueba que están todos los elementos', () => {
       />
     );
 
-    screen.getByRole('img', { name: 'Logo de inFilm' });
+    screen.getByText(/in/i);
+    screen.getByText(/Film/i);
   });
 });
