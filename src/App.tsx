@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
+import styled from 'styled-components';
 import { GlobalStyles } from './ui/theme/GlobalStyles';
+import { grid } from './ui/theme';
 import { ImageList } from './ui/components/ImageList/ImageList';
 import { Navigation } from './ui/components/Navigation/Navigation';
 
@@ -57,21 +60,27 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Navigation
-        textToFilter={textToFilter}
-        setTextToFilter={setTextToFilter}
-        formatedFilter={formatedFilter}
-      />
-      <main>
-        <ImageList
-          error={error}
-          loading={loading}
-          filteredFilms={filteredFilms}
+      <Container className="container">
+        <Navigation
+          textToFilter={textToFilter}
+          setTextToFilter={setTextToFilter}
           formatedFilter={formatedFilter}
         />
-      </main>
+        <main>
+          <ImageList
+            error={error}
+            loading={loading}
+            filteredFilms={filteredFilms}
+            formatedFilter={formatedFilter}
+          />
+        </main>
+      </Container>
     </>
   );
 }
+
+const Container = styled.div`
+  padding: ${grid.gap.tablet}px;
+`;
 
 export default App;

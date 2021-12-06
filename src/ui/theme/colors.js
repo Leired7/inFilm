@@ -23,5 +23,6 @@ export const color = {
   purple: '#3d1272',
   violet: '#714fb1',
   lightBrown: '#c1a78a',
-  darkBlue: '#2f354a',
+  lightGrey: '#2f354a',
+  darkBlue: '#121620',
 };
