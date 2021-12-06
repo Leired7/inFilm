@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 import { GlobalStyles } from './ui/theme/GlobalStyles';
-import { grid } from './ui/theme';
+import { grid, color } from './ui/theme';
 import { ImageList } from './ui/components/ImageList/ImageList';
 import { Navigation } from './ui/components/Navigation/Navigation';
 
@@ -81,6 +81,8 @@ function App() {
 
 const Container = styled.div`
   padding: ${grid.gap.tablet}px;
+
+  border: 10px solid ${color.golden};
 `;
 
 export default App;

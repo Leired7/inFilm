@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { sizes, color, media } from '../../theme';
+import { sizes, color, media, font } from '../../theme';
 
 export interface SearchBarInfoProps {
   textToFilter: string;
@@ -25,10 +25,10 @@ export const SearchBar: React.FC<SearchBarInfoProps> = ({
         }}
       />
       {formatedFilter.length !== 0 && formatedFilter.length <= 3 && (
-        <p>
+        <HelpMessage>
           Hacen falta 3 carácteres diferentes al espacio para iniciar la
           búsqueda... 😉
-        </p>
+        </HelpMessage>
       )}
     </SearchBarForm>
   );
@@ -53,9 +53,18 @@ const SearchInput = styled.input`
 
   background: ${color.lightGrey};
   color: ${color.white};
+  font-weight: ${font.weight.regular};
+  letter-spacing: 1px;
 
-  &:focus {
-    outline: ${sizes.tiny} dashed ${color.golden};
-    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
+  &:focus-visible {
+    outline: 1px solid ${color.golden};
+    box-shadow: 3px 3px 5px ${color.golden};
   }
+`;
+
+const HelpMessage = styled.p`
+  color: ${color.white};
+  margin-top: ${sizes.small};
+
+  min-height: ${sizes.tiny};
 `;
