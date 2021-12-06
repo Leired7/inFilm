@@ -1,4 +1,14 @@
-export const SearchBar = (props: any) => {
+export interface SearchBarInfoProps {
+  textToFilter: string;
+  setTextToFilter: (text: string) => void;
+  formatedFilter: string;
+}
+
+export const SearchBar: React.FC<SearchBarInfoProps> = ({
+  textToFilter,
+  formatedFilter,
+  setTextToFilter,
+}) => {
   return (
     <form>
       <label htmlFor="busqueda">
@@ -6,19 +16,18 @@ export const SearchBar = (props: any) => {
         <input
           id="busqueda"
           placeholder="¿Qué quieres buscar hoy?"
-          value={props.textToFilter}
+          value={textToFilter}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            props.setTextToFilter(event.currentTarget.value);
+            setTextToFilter(event.currentTarget.value);
           }}
         />
       </label>
-      {props.formatedFilter.length !== 0 &&
-        props.formatedFilter.length <= 3 && (
-          <p>
-            Hacen falta 3 carácteres diferentes al espacio para iniciar la
-            búsqueda... 😉
-          </p>
-        )}
+      {formatedFilter.length !== 0 && formatedFilter.length <= 3 && (
+        <p>
+          Hacen falta 3 carácteres diferentes al espacio para iniciar la
+          búsqueda... 😉
+        </p>
+      )}
     </form>
   );
 };

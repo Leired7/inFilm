@@ -1,22 +1,35 @@
 import React from 'react';
 
-import { InfoFromFilm, FetchedInfo } from '../../../core/domain/model';
-export const ImageList = (props: FetchedInfo) => {
-  if (props.error) {
+import { InfoFromFilm } from '../../../core/domain/model';
+
+export interface FilmInfoProps {
+  error: boolean;
+  loading: boolean;
+  filteredFilms: InfoFromFilm[];
+  formatedFilter: string;
+}
+
+export const ImageList: React.FC<FilmInfoProps> = ({
+  error,
+  loading,
+  filteredFilms,
+  formatedFilter,
+}) => {
+  if (error) {
     return <p>No se han podido mostrar las 50 películas más vistas</p>;
   }
 
-  if (props.loading) {
+  if (loading) {
     return <h1>Cargando...</h1>;
   }
 
-  if (props.filteredFilms.length === 0 && props.formatedFilter.length > 3) {
+  if (filteredFilms.length === 0 && formatedFilter.length > 3) {
     return <p>Ohhhh no encontramos lo que buscabas 😔</p>;
   }
 
   return (
     <>
-      {props.filteredFilms.map((item: InfoFromFilm, index: number) => {
+      {filteredFilms.map((item: InfoFromFilm, index: number) => {
         return (
           <div key={index}>
             <figure>
