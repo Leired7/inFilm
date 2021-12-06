@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { sizes, color, media } from '../../theme';
+import { sizes, color, media, font } from '../../theme';
 import { SearchBar } from '../SearchBar';
 
 import { SearchBarInfoProps } from '../SearchBar';
@@ -25,14 +25,15 @@ export const Navigation: React.FC<SearchBarInfoProps> = ({
 };
 
 const MainNavigation = styled.nav`
-  padding-bottom: ${sizes.huge};
+  padding-bottom: ${sizes.large};
 
   ${media.tablet`
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 
     width: 100%;
+
   `}
 `;
 
@@ -40,9 +41,10 @@ const MainNavigation = styled.nav`
 
 const Name = styled.p`
   color: white;
-  font-weight: 700;
+  ${font.sizes.large};
+  font-weight: ${font.weight.black};
 
-  margin-bottom: ${sizes.small};
+  margin-bottom: ${sizes.tiny};
 
   ${media.tablet`
     margin: 0;
@@ -51,5 +53,5 @@ const Name = styled.p`
 
 const Highlight = styled.span`
   color: ${color.golden};
-  font-weight: 700;
+  font-weight: ${font.weight.black}; ;
 `;
