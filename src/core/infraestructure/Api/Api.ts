@@ -1,12 +1,15 @@
-import { InfoFromFilm } from '../../domain/model';
+import { ApiResponse } from './domain';
 
 export const Api = {
-  getAllFilms: async (): Promise<InfoFromFilm[]> => {
+  getAllFilms: async (): Promise<ApiResponse> => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}&language=es`
     );
     const data = await response.json();
 
-    return data.results;
+    const results: [] = data.results;
+    const status = response.status;
+
+    return { results, status };
   },
 };

@@ -1,5 +1,4 @@
-import { InfoFromFilm } from './InfoFromFilm';
-
+import { ApiResponse } from '../../infraestructure/Api/domain';
 export interface FilmRepository {
-  fetchAll: () => Promise<InfoFromFilm[]>;
+  fetchAll: () => Promise<ApiResponse>;
 }

@@ -15,7 +15,7 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 
     screen.queryByText(loadingMessage);
   });
-  it('No muestra las 50 pelis más vistas', () => {
+  it('No muestra las 20 pelis más vistas', async () => {
     server.use(
       rest.get(
         'https://api.themoviedb.org/3/movie/popular',
@@ -25,10 +25,12 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
       )
     );
 
-    const dontShowMessage =
-      /no se han podido mostrar las 50 películas más vistas/i;
+    render(<App />);
 
-    screen.queryByText(dontShowMessage);
+    const dontShowMessage =
+      /no se han podido mostrar las 20 películas más vistas/i;
+
+    await screen.findByText(dontShowMessage);
   });
   it('Muestra la carátula de las 20 películas más vistas', async () => {
     for (let film of popularFilms.results) {

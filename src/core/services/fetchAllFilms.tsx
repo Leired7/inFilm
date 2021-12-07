@@ -1,7 +1,8 @@
-import { InfoFromFilm, FilmRepository } from '../domain/model';
+import { FilmRepository } from '../domain/model';
+import { ApiResponse } from '../infraestructure/Api/domain';
 
 export async function fetchAllFilms(
   filmRepository: FilmRepository
-): Promise<InfoFromFilm[]> {
+): Promise<ApiResponse> {
   return await filmRepository.fetchAll();
 }

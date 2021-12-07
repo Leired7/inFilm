@@ -18,7 +18,7 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   formatedFilter,
 }) => {
   if (error) {
-    return <p>No se han podido mostrar las 50 películas más vistas</p>;
+    return <p>No se han podido mostrar las 20 películas más vistas</p>;
   }
 
   if (loading) {
