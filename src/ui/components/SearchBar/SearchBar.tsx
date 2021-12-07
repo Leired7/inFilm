@@ -57,8 +57,7 @@ const SearchInput = styled.input`
   letter-spacing: 1px;
 
   &:focus-visible {
-    outline: 1px solid ${color.golden};
-    box-shadow: 3px 3px 5px ${color.golden};
+    outline: 4px dashed ${color.golden};
   }
 `;
 
