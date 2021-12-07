@@ -51,13 +51,6 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     searchInput = screen.getByPlaceholderText(labelText);
   });
-  it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
-    userEvent.type(searchInput, 'l');
-
-    screen.getByText(
-      'Hacen falta 3 carácteres diferentes al espacio para iniciar la búsqueda... 😉'
-    );
-  });
 
   it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
     userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
