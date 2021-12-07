@@ -27,7 +27,7 @@ function App() {
           const response = await fetchAllFilms(filmApiRepository);
 
           if (response.status === 200) {
-            await setFetchedInfo(response.cleanData);
+            await setFetchedInfo(response.results);
           } else {
             setError(true);
           }

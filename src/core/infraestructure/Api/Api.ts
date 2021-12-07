@@ -7,9 +7,9 @@ export const Api = {
     );
     const data = await response.json();
 
-    const cleanData: [] = data.cleanData;
+    const results: [] = data.results;
     const status = response.status;
 
-    return { cleanData, status };
+    return { results, status };
   },
 };
