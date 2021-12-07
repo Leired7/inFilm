@@ -24,20 +24,24 @@ function App() {
       const fetchPopularFilms = async () => {
         const filmApiRepository = new ApiRepository();
         if (isComponentMounted) {
-          setFetchedInfo(await fetchAllFilms(filmApiRepository));
+          const response = await fetchAllFilms(filmApiRepository);
+
+          if (response.status === 200) {
+            await setFetchedInfo(response.cleanData);
+          } else {
+            setError(true);
+          }
         }
       };
 
       fetchPopularFilms();
-
-      return () => {
-        isComponentMounted = false;
-      };
-    } catch (error) {
-      setError(true);
     } finally {
       setLoading(false);
     }
+
+    return () => {
+      isComponentMounted = false;
+    };
   }, []);
 
   const formatedFilter: string = textToFilter
