@@ -4,7 +4,7 @@ import { css } from 'styled-components';
 import { media } from './media';
 
 const fontFamily = {
-  lato: 'Lato',
+  openSans: 'Open sans',
 };
 
 const fontWeight = {
@@ -18,63 +18,63 @@ export const typi = {
     default: {
       size: 10,
       lineHeight: 16,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   small: {
     default: {
       size: 12,
       lineHeight: 20,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   base: {
     default: {
       size: 14,
       lineHeight: 24,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   large: {
     default: {
       size: 20,
       lineHeight: 32,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   buttonSmall: {
     default: {
       size: 12,
       lineHeight: 16,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   button: {
     default: {
       size: 14,
       lineHeight: 16,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   medium: {
     default: {
       size: 16,
       lineHeight: 24,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   nav: {
     default: {
       size: 16,
       lineHeight: 24,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
   h1: {
     default: {
       size: 26,
       lineHeight: 32,
-      family: fontFamily.lato,
+      family: fontFamily.openSans,
     },
   },
 };

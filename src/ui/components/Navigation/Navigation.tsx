@@ -37,14 +37,13 @@ const MainNavigation = styled.nav`
   `}
 `;
 
-/* *************** */
-
 const Name = styled.p`
   color: white;
-  ${font.sizes.large};
+  font-family: 'Londrina Solid';
+  font-size: ${font.sizes.h1};
   font-weight: ${font.weight.black};
 
-  margin-bottom: ${sizes.tiny};
+  margin-bottom: ${sizes.small};
 
   ${media.tablet`
     margin: 0;
