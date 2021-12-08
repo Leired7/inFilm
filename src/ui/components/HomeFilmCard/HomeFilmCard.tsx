@@ -17,7 +17,9 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
         />
         <figcaption>{title}</figcaption>
       </figure>
-      <p>{release_date}</p>
+      <p>
+        {release_date} {vote_average} {vote_count}
+      </p>
     </div>
   );
 };
