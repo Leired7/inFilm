@@ -5,12 +5,12 @@ import { Navigation } from '../Navigation';
 
 describe('Comprueba que están todos los elementos', () => {
   it('Tiene que aparecer el Logo', () => {
+    const mock = jest.fn();
+
     render(
       <Navigation
         textToFilter={''}
-        setTextToFilter={function (text: string): void {
-          throw new Error('Function not implemented.');
-        }}
+        setTextToFilter={mock}
         formatedFilter={''}
       />
     );

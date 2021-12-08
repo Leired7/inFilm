@@ -10,6 +10,7 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
   beforeEach(() => {
     render(<App />);
   });
+
   it('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
     const loadingMessage = /Cargando.../i;
 
@@ -51,32 +52,31 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     searchInput = screen.getByPlaceholderText(labelText);
   });
-  it('Muestra mensaje si el término de búsqueda es inferior a 3 caracteres.', () => {
-    userEvent.type(searchInput, 'l');
-
-    screen.getByText(
-      'Hacen falta 3 carácteres diferentes al espacio para iniciar la búsqueda... 😉'
-    );
-  });
 
   it('El término de búsqueda tiene una longitud superior o igual a 3 caracteres.', async () => {
-    userEvent.type(searchInput, 'Shang-Chi y la leyenda de los Diez Anillos');
+    const userTypedWord = 'Shang-Chi y la leyenda de los Diez Anillos';
+
+    userEvent.type(searchInput, userTypedWord);
 
     const images = await screen.findAllByRole('img', {
-      name: 'Shang-Chi y la leyenda de los Diez Anillos',
+      name: userTypedWord,
     });
 
     expect(images.length).toBe(1);
   });
 
   it('No hay pelis cuya etiqueta coincida exactamente con el término de búsqueda', async () => {
-    userEvent.type(searchInput, 'Alien');
+    const userTypedWord = 'Alien';
+
+    userEvent.type(searchInput, userTypedWord);
 
     screen.getByText('Ohhhh no encontramos lo que buscabas 😔');
   });
 
   it('Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda', async () => {
-    userEvent.type(searchInput, 'roj');
+    const userTypedWord = 'roj';
+
+    userEvent.type(searchInput, userTypedWord);
 
     const images = await screen.findAllByRole('img', { name: /roj/i });
 
@@ -84,7 +84,9 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   });
 
   it('Se ignoran los espacios laterales y los espacios interiores mayores que 1 del término de búsqueda.', async () => {
-    userEvent.type(searchInput, '  roj');
+    const userTypedWord = '  roj';
+
+    userEvent.type(searchInput, userTypedWord);
 
     const images = await screen.findAllByRole('img', { name: /roj/i });
 
@@ -92,7 +94,9 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   });
 
   it('R4.1: Los espacios laterales superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
-    userEvent.type(searchInput, '   f ');
+    const userTypedWord = '   f ';
+
+    userEvent.type(searchInput, userTypedWord);
 
     screen.getByText(
       'Hacen falta 3 carácteres diferentes al espacio para iniciar la búsqueda... 😉'
@@ -100,20 +104,27 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   });
 
   it('R4.2: Los espacios interiores superiores a 1 no cuentan como caracteres para calcular la longitud de la cadena de búsqueda.', async () => {
-    userEvent.type(searchInput, '   a    le    ');
+    const userTypedWord = '   a    le    ';
+    const findedFilm = 'Shang-Chi y la leyenda de los Diez Anillos';
+
+    userEvent.type(searchInput, userTypedWord);
 
     const images = await screen.findAllByRole('img', {
-      name: 'Shang-Chi y la leyenda de los Diez Anillos',
+      name: findedFilm,
     });
 
     expect(images.length).toBe(1);
   });
 
   it('Se ignoran mayúsculas y minúsculas', async () => {
-    userEvent.type(searchInput, 'LeyENdA');
+    const userTypedWord = 'LeyENdA';
+
+    const findedFilm = 'Shang-Chi y la leyenda de los Diez Anillos';
+
+    userEvent.type(searchInput, userTypedWord);
 
     const images = await screen.findAllByRole('img', {
-      name: 'Shang-Chi y la leyenda de los Diez Anillos',
+      name: findedFilm,
     });
 
     expect(images.length).toBe(1);
