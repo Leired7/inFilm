@@ -23,4 +23,8 @@ describe('En las tarjetas de películas de la home se muestra la suguiente infor
     await screen.findByText(title);
     await screen.findByRole('img', { name: title });
   });
+
+  test.todo(
+    'Ocultar la imagen para lectores de pantalla o hacer con ella otra cosa accesible que se me ocurra 😅'
+  );
 });
