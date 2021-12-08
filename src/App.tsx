@@ -85,6 +85,7 @@ function App() {
 
 const Container = styled.div`
   padding: ${grid.gap.tablet}px;
+  min-height: 100vh;
 
   border: 10px solid ${color.golden};
 `;
