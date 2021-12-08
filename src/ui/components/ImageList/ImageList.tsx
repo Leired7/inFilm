@@ -1,4 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
+
+import { sizes } from '../../theme';
 
 import { InfoFromFilm } from '../../../core/domain/model';
 
@@ -30,7 +33,7 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   }
 
   return (
-    <>
+    <DisplayList>
       {filteredFilms.map((item: InfoFromFilm, index: number) => {
         const {
           poster_path,
@@ -52,6 +55,12 @@ export const ImageList: React.FC<FilmInfoProps> = ({
           />
         );
       })}
-    </>
+    </DisplayList>
   );
 };
+
+const DisplayList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: ${sizes.small};
+`;
