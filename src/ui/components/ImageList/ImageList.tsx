@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import { InfoFromFilm } from '../../../core/domain/model';
+
+import { HomeFilmCard } from '../HomeFilmCard';
 
 export interface FilmInfoProps {
   error: boolean;
@@ -32,23 +32,26 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   return (
     <>
       {filteredFilms.map((item: InfoFromFilm, index: number) => {
+        const {
+          poster_path,
+          title,
+          release_date,
+          genres_id,
+          vote_average,
+          vote_count,
+        } = item;
         return (
-          <FilmCard key={index}>
-            <figure>
-              <Poster
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                alt={item.title}
-              />
-              <figcaption>{item.title}</figcaption>
-            </figure>
-            <p>{item.release_date}</p>
-          </FilmCard>
+          <HomeFilmCard
+            poster_path={poster_path}
+            title={title}
+            release_date={release_date}
+            genres_id={genres_id}
+            vote_average={vote_average}
+            vote_count={vote_count}
+            key={index}
+          />
         );
       })}
     </>
   );
 };
-
-const FilmCard = styled.div``;
-
-const Poster = styled.img``;
