@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Home', () => {
   it('Visita la home y hace una búsqueda', () => {
     cy.visit('/');
