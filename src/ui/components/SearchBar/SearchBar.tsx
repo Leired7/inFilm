@@ -24,7 +24,7 @@ export const SearchBar: React.FC<SearchBarInfoProps> = ({
           setTextToFilter(event.currentTarget.value);
         }}
       />
-      {formatedFilter.length !== 0 && formatedFilter.length <= 3 && (
+      {formatedFilter.length !== 0 && formatedFilter.length <= 2 && (
         <HelpMessage>
           Hacen falta 3 carácteres diferentes al espacio para iniciar la
           búsqueda... 😉
