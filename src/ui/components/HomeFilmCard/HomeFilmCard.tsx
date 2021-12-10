@@ -23,12 +23,16 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
         <FilmTitle title={title}>
           <strong>{title}</strong>
         </FilmTitle>
-        <p>
-          <VoteText>Puntuación: </VoteText>
-          <VoteAverage>{vote_average} / 10 </VoteAverage>
-          <VoteText>Votos: </VoteText>
-          <VoteCount>{vote_count}</VoteCount>
-        </p>
+        <FilmBrief>
+          <p>
+            <VoteText>Puntuación: </VoteText>
+            <VoteAverage>{vote_average} / 10 </VoteAverage>
+          </p>
+          <p>
+            <VoteText>Votos: </VoteText>
+            <VoteCount>{vote_count}</VoteCount>
+          </p>
+        </FilmBrief>
       </FilmCardInfo>
     </FilmCard>
   );
@@ -37,7 +41,7 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
 const FilmCard = styled.div`
   position: relative;
 
-  height: 250px;
+  height: auto;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -104,6 +108,10 @@ const FilmTitle = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow-x: hidden;
+`;
+
+const FilmBrief = styled.div`
+  max-height: 200px;
 `;
 
 const VoteAverage = styled.span`
