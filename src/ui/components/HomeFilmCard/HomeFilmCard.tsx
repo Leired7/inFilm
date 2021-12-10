@@ -17,9 +17,8 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
       }}
-      data-test-id={id}
     >
-      <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} />
+      <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
       <FilmCardInfo>
         <ReleaseData>{release_date}</ReleaseData>
         <FilmTitle title={title}>
@@ -49,8 +48,6 @@ const FilmCard = styled.div`
   background-repeat: no-repeat;
 
   overflow: hidden;
-
-  cursor: default;
 
   & p {
     margin: 0;
