@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import { GlobalStyles } from './ui/theme/GlobalStyles';
-import { grid, color } from './ui/theme';
-import { ImageList } from './ui/components/ImageList/ImageList';
-import { Navigation } from './ui/components/Navigation/Navigation';
 
 import { InfoFromFilm } from './core/domain/model';
 import { ApiRepository } from './core/infraestructure/ApiRepository';
 import { fetchAllFilms } from './core/services/fetchAllFilms';
+
+import { HomeContainer } from './ui/views/HomeContainer';
 
 function App() {
   const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
@@ -62,32 +62,25 @@ function App() {
   );
 
   return (
-    <>
+    <Router>
       <GlobalStyles />
-      <Container className="container">
-        <Navigation
-          textToFilter={textToFilter}
-          setTextToFilter={setTextToFilter}
-          formatedFilter={formatedFilter}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomeContainer
+              textToFilter={textToFilter}
+              setTextToFilter={setTextToFilter}
+              formatedFilter={formatedFilter}
+              error={error}
+              loading={loading}
+              filteredFilms={filteredFilms}
+            />
+          }
         />
-        <main>
-          <ImageList
-            error={error}
-            loading={loading}
-            filteredFilms={filteredFilms}
-            formatedFilter={formatedFilter}
-          />
-        </main>
-      </Container>
-    </>
+      </Routes>
+    </Router>
   );
 }
-
-const Container = styled.div`
-  padding: ${grid.gap.tablet}px;
-  min-height: 100vh;
-
-  border: 10px solid ${color.golden};
-`;
 
 export default App;
