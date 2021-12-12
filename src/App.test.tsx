@@ -142,3 +142,25 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     expect(images.length).toBe(1);
   });
 });
+
+describe('Histroria de usuarie 3: "COMO usuari QUIERO poder ver más información sobre la películ PARA poder elegir mejor que ver"', () => {
+  beforeEach(() => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+  });
+  it('Muestra la información de la home e incluye el resúmen y los géneros de la película', async () => {
+    const filmName = /Ciao Alberto/i;
+    const filmImage = await screen.findByRole('img', { name: filmName });
+
+    userEvent.click(filmImage);
+
+    expect(
+      screen.getByText(
+        'Soy el futuro componente de la información de la películas: 876716'
+      )
+    ).toBeInTheDocument();
+  });
+});
