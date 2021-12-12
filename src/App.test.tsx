@@ -143,7 +143,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
   });
 });
 
-describe('Histroria de usuarie 3: "COMO usuari QUIERO poder ver más información sobre la películ PARA poder elegir mejor que ver"', () => {
+describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más información sobre la películ PARA poder elegir mejor que ver"', () => {
   beforeEach(() => {
     render(
       <MemoryRouter>
@@ -159,7 +159,7 @@ describe('Histroria de usuarie 3: "COMO usuari QUIERO poder ver más informació
 
     expect(
       screen.getByText(
-        'Soy el futuro componente de la información de la películas: 876716'
+        'Soy el componente FilmCardInformation de la información de la películas: 876716'
       )
     ).toBeInTheDocument();
   });
