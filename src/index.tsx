@@ -6,12 +6,16 @@ import reportWebVitals from './reportWebVitals';
 
 async function main() {
   if (process.env.NODE_ENV === 'development') {
+    if (window.location.pathname === '/inFilm') {
+      window.location.pathname = '/inFilm/';
+      return;
+    }
     const { worker } = require('./mocks/browser');
 
     await worker.start({
       waitUntilReady: true,
       serviceWorker: {
-        url: `/mockServiceWorker.js`,
+        url: `/inFilm/mockServiceWorker.js`,
       },
       onUnhandledRequest: (req: Request) => {
         console.warn('Found an unhanded %s request to %s', req.method, req.url);
