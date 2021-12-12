@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: 13.x
 
-      - name: Install NPM packages
-        run: npm ci
+      - name: Install yarn packages
+        run: yarn ci
 
       - name: Run tests
-        run: npm run test -- --coverage
+        run: yarn test -- --coverage

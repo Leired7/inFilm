@@ -2,7 +2,6 @@
   "name": "infilm",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -31,9 +30,7 @@
     "lint": "eslint src",
     "prettier:fix": "prettier --write src",
     "prettier:check": "prettier --check src",
-    "prepare": "husky install",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
