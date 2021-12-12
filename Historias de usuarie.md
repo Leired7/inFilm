@@ -165,7 +165,7 @@ COMO usuarie
 QUIERO poder ver más información sobre la película
 PARA poder elegir mejor que ver
 
-> R1 Muestra el nombre de: la persona que dirige, las personas que actúan y un breve resúmen
+> R1 Muestra la información de la home e incluye el resúmen y los géneros de la película
 
 **Ejemplo R1:**
 
