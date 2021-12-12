@@ -3,6 +3,8 @@ import { InfoFromFilm } from 'src/core/domain/model';
 import styled from 'styled-components';
 import { font, color } from '../../theme';
 
+import { Link, Router } from 'react-router-dom';
+
 export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   poster_path,
   title,
@@ -13,34 +15,36 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   id,
 }) => {
   return (
-    <a href="#" data-test-id={id}>
-      <FilmCard
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
-        }}
-      >
-        <img
-          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-          alt={title}
-        />
-        <FilmCardInfo>
-          <ReleaseData>{release_date}</ReleaseData>
-          <FilmTitle title={title}>
-            <strong>{title}</strong>
-          </FilmTitle>
-          <FilmBrief>
-            <p>
-              <VoteText>Puntuación: </VoteText>
-              <VoteAverage>{vote_average} / 10 </VoteAverage>
-            </p>
-            <p>
-              <VoteText>Votos: </VoteText>
-              <VoteCount>{vote_count}</VoteCount>
-            </p>
-          </FilmBrief>
-        </FilmCardInfo>
-      </FilmCard>
-    </a>
+    <>
+      <Link to={`film/${id}`} data-test-id={id}>
+        <FilmCard
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
+          }}
+        >
+          <img
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={title}
+          />
+          <FilmCardInfo>
+            <ReleaseData>{release_date}</ReleaseData>
+            <FilmTitle title={title}>
+              <strong>{title}</strong>
+            </FilmTitle>
+            <FilmBrief>
+              <p>
+                <VoteText>Puntuación: </VoteText>
+                <VoteAverage>{vote_average} / 10 </VoteAverage>
+              </p>
+              <p>
+                <VoteText>Votos: </VoteText>
+                <VoteCount>{vote_count}</VoteCount>
+              </p>
+            </FilmBrief>
+          </FilmCardInfo>
+        </FilmCard>
+      </Link>
+    </>
   );
 };
 

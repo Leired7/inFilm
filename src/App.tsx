@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 
 import { GlobalStyles } from './ui/theme/GlobalStyles';
 
@@ -62,7 +62,7 @@ function App() {
   );
 
   return (
-    <Router>
+    <>
       <GlobalStyles />
       <Routes>
         <Route
@@ -78,9 +78,24 @@ function App() {
             />
           }
         />
+        <Route path="film">
+          <Route path=":filmId" element={<MockComponent />} />
+        </Route>
       </Routes>
-    </Router>
+    </>
   );
 }
 
+export function MockComponent() {
+  const filmId = useParams();
+  console.log(filmId.filmId);
+  return (
+    <>
+      <h1>
+        Soy el futuro componente de la información de la películas:{' '}
+        {filmId.filmId}
+      </h1>
+    </>
+  );
+}
 export default App;
