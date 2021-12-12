@@ -16,7 +16,7 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
 }) => {
   return (
     <>
-      <Link to={`film/${id}`} data-test-id={id}>
+      <Link to={`film/${id}`} data-test-id={id} title={title}>
         <FilmCard
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
