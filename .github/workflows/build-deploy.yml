@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: linter and test
     runs-on: ubuntu-latest
 
     steps:
@@ -21,10 +21,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 13.x
-        run: npm install -g yarn
 
-      - name: Install yarn packages
-        run: yarn install
+      - name: Install NPM packages
+        run: npm install
 
       - name: Run tests
         run: npm run test -- --coverage
