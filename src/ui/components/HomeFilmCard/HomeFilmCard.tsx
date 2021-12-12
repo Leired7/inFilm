@@ -3,7 +3,7 @@ import { InfoFromFilm } from 'src/core/domain/model';
 import styled from 'styled-components';
 import { font, color } from '../../theme';
 
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   poster_path,
