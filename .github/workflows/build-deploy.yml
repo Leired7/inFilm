@@ -1,4 +1,4 @@
-name: Build & deploy
+name: PR Linters and Test
 
 on:
   push:
@@ -21,39 +21,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 13.x
+        run: npm install -g yarn
 
-      - name: Install NPM packages
-        run: npm ci
+      - name: Install yarn packages
+        run: yarn install
 
       - name: Run tests
-        run: npm run test -- --coverage
-
-      - name: Build project
-        run: npm run build
-        env:
-          REACT_APP_THEMOVIEDB_API_KEY: ${{ secrets.REACT_APP_THEMOVIEDB_API_KEY }}
-
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files
-          path: ./build
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: production-files
-          path: ./build
-
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+        run: yarn test -- --coverage
