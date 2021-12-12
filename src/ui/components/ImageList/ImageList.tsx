@@ -42,6 +42,7 @@ export const ImageList: React.FC<FilmInfoProps> = ({
           genres_id,
           vote_average,
           vote_count,
+          id,
         } = item;
         return (
           <HomeFilmCard
@@ -51,6 +52,7 @@ export const ImageList: React.FC<FilmInfoProps> = ({
             genres_id={genres_id}
             vote_average={vote_average}
             vote_count={vote_count}
+            id={id}
             key={index}
           />
         );

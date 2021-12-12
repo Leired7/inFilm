@@ -5,10 +5,15 @@ import popularFilms from './mocks/popular_movie.json';
 import { server } from './mocks/server';
 import { rest } from 'msw';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
   beforeEach(() => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
   });
 
   it('Mientras cargan las imágenes se muestra un mensaje de "Cargando..."', () => {
@@ -26,8 +31,11 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
       )
     );
 
-    render(<App />);
-
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     const dontShowMessage =
       /no se han podido mostrar las 20 películas más vistas/i;
 
@@ -45,7 +53,11 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis que me interesan PARA compartirlas en mis redes sociales', () => {
   let searchInput: any;
   beforeEach(() => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
 
     const labelText = /Busca para 😴/i;
     screen.getByLabelText(labelText);

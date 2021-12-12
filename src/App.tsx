@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import styled from 'styled-components';
+import { Route, Routes, useParams } from 'react-router-dom';
+
 import { GlobalStyles } from './ui/theme/GlobalStyles';
-import { grid, color } from './ui/theme';
-import { ImageList } from './ui/components/ImageList/ImageList';
-import { Navigation } from './ui/components/Navigation/Navigation';
 
 import { InfoFromFilm } from './core/domain/model';
 import { ApiRepository } from './core/infraestructure/ApiRepository';
 import { fetchAllFilms } from './core/services/fetchAllFilms';
+
+import { HomeContainer } from './ui/views/HomeContainer';
 
 function App() {
   const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
@@ -64,30 +64,38 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Container className="container">
-        <Navigation
-          textToFilter={textToFilter}
-          setTextToFilter={setTextToFilter}
-          formatedFilter={formatedFilter}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomeContainer
+              textToFilter={textToFilter}
+              setTextToFilter={setTextToFilter}
+              formatedFilter={formatedFilter}
+              error={error}
+              loading={loading}
+              filteredFilms={filteredFilms}
+            />
+          }
         />
-        <main>
-          <ImageList
-            error={error}
-            loading={loading}
-            filteredFilms={filteredFilms}
-            formatedFilter={formatedFilter}
-          />
-        </main>
-      </Container>
+        <Route path="film">
+          <Route path=":filmId" element={<MockComponent />} />
+        </Route>
+      </Routes>
     </>
   );
 }
 
-const Container = styled.div`
-  padding: ${grid.gap.tablet}px;
-  min-height: 100vh;
-
-  border: 10px solid ${color.golden};
-`;
-
+export function MockComponent() {
+  const filmId = useParams();
+  console.log(filmId.filmId);
+  return (
+    <>
+      <h1>
+        Soy el futuro componente de la información de la películas:{' '}
+        {filmId.filmId}
+      </h1>
+    </>
+  );
+}
 export default App;

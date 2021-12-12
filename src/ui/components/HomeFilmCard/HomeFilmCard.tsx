@@ -3,6 +3,8 @@ import { InfoFromFilm } from 'src/core/domain/model';
 import styled from 'styled-components';
 import { font, color } from '../../theme';
 
+import { Link } from 'react-router-dom';
+
 export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   poster_path,
   title,
@@ -10,31 +12,39 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   genres_id,
   vote_average,
   vote_count,
+  id,
 }) => {
   return (
-    <FilmCard
-      style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
-      }}
-    >
-      <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} />
-      <FilmCardInfo>
-        <ReleaseData>{release_date}</ReleaseData>
-        <FilmTitle title={title}>
-          <strong>{title}</strong>
-        </FilmTitle>
-        <FilmBrief>
-          <p>
-            <VoteText>Puntuación: </VoteText>
-            <VoteAverage>{vote_average} / 10 </VoteAverage>
-          </p>
-          <p>
-            <VoteText>Votos: </VoteText>
-            <VoteCount>{vote_count}</VoteCount>
-          </p>
-        </FilmBrief>
-      </FilmCardInfo>
-    </FilmCard>
+    <>
+      <Link to={`film/${id}`} data-test-id={id}>
+        <FilmCard
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
+          }}
+        >
+          <img
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={title}
+          />
+          <FilmCardInfo>
+            <ReleaseData>{release_date}</ReleaseData>
+            <FilmTitle title={title}>
+              <strong>{title}</strong>
+            </FilmTitle>
+            <FilmBrief>
+              <p>
+                <VoteText>Puntuación: </VoteText>
+                <VoteAverage>{vote_average} / 10 </VoteAverage>
+              </p>
+              <p>
+                <VoteText>Votos: </VoteText>
+                <VoteCount>{vote_count}</VoteCount>
+              </p>
+            </FilmBrief>
+          </FilmCardInfo>
+        </FilmCard>
+      </Link>
+    </>
   );
 };
 
@@ -47,8 +57,6 @@ const FilmCard = styled.div`
   background-repeat: no-repeat;
 
   overflow: hidden;
-
-  cursor: default;
 
   & p {
     margin: 0;

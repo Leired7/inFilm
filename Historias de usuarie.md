@@ -146,13 +146,42 @@ Se pondrá "·" para marcar los espacios en blanco en los ejemplos
 - Irantzu escribe 'paliza'
   => Se le avisa a Irantzu de que la búsqueda de esa palabra no es posible.
 
+- [ ] Hecho
+
 > R7 Dependiendo de las coincidencias que tengan las etiquetas de una peli se le asignará un peso:
 
 - Si el término de búsqueda es idéntico a una etiqueta: +2
+- [ ] Hecho
 
 - Si una etiqueta coincide parcialmente con el término de búsqueda: +1
 
+- [ ] Hecho
+
   > R8b El resultado de búsqueda estará ordenado de mayor a menor peso primero y de más a menos reciente si el peso es idéntico.
+
+  - [ ] Hecho
+
+COMO usuarie
+QUIERO poder ver más información sobre la película
+PARA poder elegir mejor que ver
+
+> R1 Muestra el nombre de: la persona que dirige, las personas que actúan y un breve resúmen
+
+**Ejemplo R1:**
+
+- Irantzu clicka en el poster de la película
+
+  => Irantzu accede a la información de la películas
+
+- [ ] Hecho
+
+**Ejemplo R1:**
+
+- Irantzu clicka en el poster de la película
+
+  => Se muestra un error.
+
+- [ ] Hecho
 
 ## Diseño
 

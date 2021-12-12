@@ -1,21 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 async function main() {
   if (process.env.NODE_ENV === 'development') {
-    if (window.location.pathname === '/inFilm') {
-      window.location.pathname = '/inFilm/';
-      return;
-    }
-
     const { worker } = require('./mocks/browser');
 
     await worker.start({
       waitUntilReady: true,
       serviceWorker: {
-        url: `/inFilm/mockServiceWorker.js`,
+        url: `/mockServiceWorker.js`,
       },
       onUnhandledRequest: (req: Request) => {
         console.warn('Found an unhanded %s request to %s', req.method, req.url);
@@ -25,7 +21,9 @@ async function main() {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );
