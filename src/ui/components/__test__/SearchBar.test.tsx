@@ -10,7 +10,11 @@ describe('Funcionamiento del buscador', () => {
     const mock = jest.fn();
 
     render(
-      <SearchBar textToFilter={''} setTextToFilter={mock} formatedFilter={''} />
+      <SearchBar
+        userTypeSearch={''}
+        setUserTypeSearch={mock}
+        formatedFilter={''}
+      />
     );
 
     const labelText = /Busca para 😴/i;
@@ -21,8 +25,8 @@ describe('Funcionamiento del buscador', () => {
 
     render(
       <SearchBar
-        textToFilter={userTypedWord}
-        setTextToFilter={mock}
+        userTypeSearch={userTypedWord}
+        setUserTypeSearch={mock}
         formatedFilter={userTypedWord}
       />
     );
@@ -38,7 +42,11 @@ describe('Funcionamiento del buscador', () => {
     const mock = jest.fn();
 
     render(
-      <SearchBar textToFilter={''} setTextToFilter={mock} formatedFilter={''} />
+      <SearchBar
+        userTypeSearch={''}
+        setUserTypeSearch={mock}
+        formatedFilter={''}
+      />
     );
 
     const labelText = /Busca para 😴/i;
@@ -49,8 +57,8 @@ describe('Funcionamiento del buscador', () => {
 
     render(
       <SearchBar
-        textToFilter={userTypedWord}
-        setTextToFilter={mock}
+        userTypeSearch={userTypedWord}
+        setUserTypeSearch={mock}
         formatedFilter={userTypedWord}
       />
     );
@@ -66,7 +74,11 @@ describe('Funcionamiento del buscador', () => {
     const mock = jest.fn();
 
     render(
-      <SearchBar textToFilter={''} setTextToFilter={mock} formatedFilter={''} />
+      <SearchBar
+        userTypeSearch={''}
+        setUserTypeSearch={mock}
+        formatedFilter={''}
+      />
     );
 
     const labelText = /Busca para 😴/i;
@@ -77,8 +89,8 @@ describe('Funcionamiento del buscador', () => {
 
     render(
       <SearchBar
-        textToFilter={userTypedWord}
-        setTextToFilter={mock}
+        userTypeSearch={userTypedWord}
+        setUserTypeSearch={mock}
         formatedFilter={userTypedWord}
       />
     );

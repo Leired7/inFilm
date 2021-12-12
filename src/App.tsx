@@ -16,7 +16,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  const [textToFilter, setTextToFilter] = useState<string>('');
+  const [userTypeSearch, setUserTypeSearch] = useState<string>('');
 
   useEffect(() => {
     /* Solution to memory leaks: https://www.wisdomgeek.com/development/web-development/react/avoiding-race-conditions-memory-leaks-react-useeffect/amp/?utm_source=pocket_mylist */
@@ -45,7 +45,7 @@ function App() {
     };
   }, []);
 
-  const formatedFilter: string = textToFilter
+  const formatedFilter: string = userTypeSearch
     .split(' ')
     .filter((substring) => substring)
     .join(' ')
@@ -70,8 +70,8 @@ function App() {
           path="/"
           element={
             <HomeContainer
-              textToFilter={textToFilter}
-              setTextToFilter={setTextToFilter}
+              userTypeSearch={userTypeSearch}
+              setUserTypeSearch={setUserTypeSearch}
               formatedFilter={formatedFilter}
               error={error}
               loading={loading}

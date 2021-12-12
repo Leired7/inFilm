@@ -6,8 +6,8 @@ import { Navigation } from '../../components/Navigation/Navigation';
 import { InfoFromFilm } from '../../../core/domain/model';
 
 export interface HomeInfoProps {
-  textToFilter: string;
-  setTextToFilter: (text: string) => void;
+  userTypeSearch: string;
+  setUserTypeSearch: (text: string) => void;
   formatedFilter: string;
   error: boolean;
   loading: boolean;
@@ -15,8 +15,8 @@ export interface HomeInfoProps {
 }
 
 export const HomeContainer: React.FC<HomeInfoProps> = ({
-  textToFilter,
-  setTextToFilter,
+  userTypeSearch,
+  setUserTypeSearch,
   formatedFilter,
   error,
   loading,
@@ -25,8 +25,8 @@ export const HomeContainer: React.FC<HomeInfoProps> = ({
   return (
     <Container className="container">
       <Navigation
-        textToFilter={textToFilter}
-        setTextToFilter={setTextToFilter}
+        userTypeSearch={userTypeSearch}
+        setUserTypeSearch={setUserTypeSearch}
         formatedFilter={formatedFilter}
       />
       <main>

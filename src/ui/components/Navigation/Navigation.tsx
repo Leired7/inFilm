@@ -6,9 +6,9 @@ import { SearchBar } from '../SearchBar';
 import { SearchBarInfoProps } from '../SearchBar';
 
 export const Navigation: React.FC<SearchBarInfoProps> = ({
-  textToFilter,
+  userTypeSearch,
   formatedFilter,
-  setTextToFilter,
+  setUserTypeSearch,
 }) => {
   return (
     <MainNavigation>
@@ -16,9 +16,9 @@ export const Navigation: React.FC<SearchBarInfoProps> = ({
         in<Highlight>Film</Highlight>
       </Name>
       <SearchBar
-        textToFilter={textToFilter}
+        userTypeSearch={userTypeSearch}
         formatedFilter={formatedFilter}
-        setTextToFilter={setTextToFilter}
+        setUserTypeSearch={setUserTypeSearch}
       />
     </MainNavigation>
   );
