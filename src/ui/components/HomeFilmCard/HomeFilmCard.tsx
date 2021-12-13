@@ -13,10 +13,28 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   vote_average,
   vote_count,
   id,
+  overview,
+  backdrop_path,
 }) => {
+  const filmCardInfo = {
+    id: id,
+    vote_average: vote_average,
+    vote_count: vote_count,
+    release_date: release_date,
+    title: title,
+    poster_path: poster_path,
+    overview: overview,
+    backdrop_path: backdrop_path,
+  };
+
   return (
     <>
-      <Link to={`film/${id}`} data-test-id={id} title={title}>
+      <Link
+        to={`film/${id}`}
+        state={{ filmCardInfo }}
+        data-test-id={id}
+        title={title}
+      >
         <FilmCard
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
