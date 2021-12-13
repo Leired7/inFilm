@@ -151,16 +151,16 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
       </MemoryRouter>
     );
   });
-  it('Muestra la información de la home e incluye el resúmen y los géneros de la película', async () => {
+  it('Muestra el título de la película', async () => {
+    //arrange
     const filmName = /Ciao Alberto/i;
     const filmImage = await screen.findByRole('img', { name: filmName });
 
+    //act
     userEvent.click(filmImage);
 
-    expect(
-      screen.getByText(
-        'Soy el componente FilmCardInformation de la información de la películas: 876716'
-      )
-    ).toBeInTheDocument();
+    //assert
+
+    expect(screen.getByRole('heading', { name: filmName })).toBeInTheDocument();
   });
 });
