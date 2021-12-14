@@ -33,6 +33,7 @@ const BackgroundImage = styled.div`
   height: 300px;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center top;
 `;
 
 const Title = styled.h1`
@@ -63,11 +64,16 @@ const TextWrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
+  text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 0.02rem;
   font-family: 'Londrina Solid';
-  font-size: ${font.sizes.base};
+  font-size: ${font.sizes.medium};
   color: ${color.golden};
   margin: ${grid.gap.desktop}px 0 0 0;
+
+  &:hover {
+    color: ${color.white};
+  }
 `;
