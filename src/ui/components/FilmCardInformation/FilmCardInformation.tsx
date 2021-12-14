@@ -1,4 +1,3 @@
-import { url } from 'inspector';
 import { Link, useLocation } from 'react-router-dom';
 import { InfoFromFilm } from 'src/core/domain/model';
 import { color, font, grid, media, sizes } from 'src/ui/theme';
