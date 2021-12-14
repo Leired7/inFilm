@@ -7,6 +7,7 @@ import styled from 'styled-components';
 export const FilmCardInformation = () => {
   const location = useLocation();
   const cardInfo: InfoFromFilm = location.state.filmCardInfo;
+  const backHomeLink = 'Volver a la página principal';
 
   return (
     <>
@@ -20,6 +21,9 @@ export const FilmCardInformation = () => {
           {cardInfo.title} <Highlight>{cardInfo.release_date}</Highlight>
         </Title>
         <Overview>{cardInfo.overview}</Overview>
+        <StyledLink to="/" title={backHomeLink}>
+          {backHomeLink}
+        </StyledLink>
       </TextWrapper>
     </>
   );
