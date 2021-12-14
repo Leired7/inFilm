@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { sizes, color, media, font } from '../../theme';
 
 export interface SearchBarInfoProps {
-  textToFilter: string;
-  setTextToFilter: (text: string) => void;
+  userTypeSearch: string;
+  setUserTypeSearch: (text: string) => void;
   formatedFilter: string;
 }
 
 export const SearchBar: React.FC<SearchBarInfoProps> = ({
-  textToFilter,
+  userTypeSearch,
   formatedFilter,
-  setTextToFilter,
+  setUserTypeSearch,
 }) => {
   return (
     <SearchBarForm>
@@ -19,9 +19,9 @@ export const SearchBar: React.FC<SearchBarInfoProps> = ({
       <SearchInput
         id="busqueda"
         placeholder="Busca para 😴"
-        value={textToFilter}
+        value={userTypeSearch}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setTextToFilter(event.currentTarget.value);
+          setUserTypeSearch(event.currentTarget.value);
         }}
       />
       {formatedFilter.length !== 0 && formatedFilter.length <= 2 && (

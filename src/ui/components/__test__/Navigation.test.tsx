@@ -9,8 +9,8 @@ describe('Comprueba que están todos los elementos', () => {
 
     render(
       <Navigation
-        textToFilter={''}
-        setTextToFilter={mock}
+        userTypeSearch={''}
+        setUserTypeSearch={mock}
         formatedFilter={''}
       />
     );

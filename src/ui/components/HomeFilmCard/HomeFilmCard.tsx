@@ -1,7 +1,7 @@
 import { InfoFromFilm } from 'src/core/domain/model';
 
 import styled from 'styled-components';
-import { font, color } from '../../theme';
+import { font, color, media, grid } from '../../theme';
 
 import { Link } from 'react-router-dom';
 
@@ -13,18 +13,38 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   vote_average,
   vote_count,
   id,
+  overview,
+  backdrop_path,
 }) => {
+  const filmCardInfo = {
+    id: id,
+    vote_average: vote_average,
+    vote_count: vote_count,
+    release_date: release_date,
+    title: title,
+    poster_path: poster_path,
+    overview: overview,
+    backdrop_path: backdrop_path,
+  };
+
   return (
     <>
-      <Link to={`film/${id}`} data-test-id={id}>
+      <Link
+        to={`film/${id}`}
+        state={{ filmCardInfo }}
+        data-test-id={id}
+        title={title}
+      >
         <FilmCard
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
           }}
         >
-          <img
+          <FilmPoster
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title}
+            width="100"
+            height="232"
           />
           <FilmCardInfo>
             <ReleaseData>{release_date}</ReleaseData>
@@ -63,6 +83,15 @@ const FilmCard = styled.div`
     position: relative;
     z-index: 1;
   }
+`;
+
+const FilmPoster = styled.img`
+  background-color: ${color.golden};
+  color: ${color.darkBlue};
+  font-weight: ${font.weight.bold};
+  padding: ${grid.gap.tablet} ${media.tablet`
+    max-height: 232px;
+  `};
 `;
 
 const FilmCardInfo = styled.div`

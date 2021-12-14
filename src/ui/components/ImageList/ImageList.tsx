@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { sizes } from '../../theme';
+import { media, sizes, grid } from '../../theme';
 
 import { InfoFromFilm } from '../../../core/domain/model';
 
@@ -43,6 +43,8 @@ export const ImageList: React.FC<FilmInfoProps> = ({
           vote_average,
           vote_count,
           id,
+          overview,
+          backdrop_path,
         } = item;
         return (
           <HomeFilmCard
@@ -54,6 +56,8 @@ export const ImageList: React.FC<FilmInfoProps> = ({
             vote_count={vote_count}
             id={id}
             key={index}
+            overview={overview}
+            backdrop_path={backdrop_path}
           />
         );
       })}
@@ -65,4 +69,8 @@ const DisplayList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: ${sizes.small};
+
+  ${media.desktop`
+    padding: 0 ${grid.gap.desktopLarge}px;
+  `}
 `;

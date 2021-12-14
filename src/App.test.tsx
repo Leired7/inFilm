@@ -142,3 +142,38 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
     expect(images.length).toBe(1);
   });
 });
+
+describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más información sobre la películ PARA poder elegir mejor que ver"', () => {
+  beforeEach(() => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+  });
+  it('Muestra el título de la película', async () => {
+    //arrange
+    const filmName = /Ciao Alberto/i;
+    const filmImage = await screen.findByRole('img', { name: filmName });
+
+    //act
+    userEvent.click(filmImage);
+
+    //assert
+    expect(
+      screen.getByRole('heading', { name: filmName, level: 1 })
+    ).toBeInTheDocument();
+  });
+  it('Muestra un link para volver a la home', async () => {
+    //arrange
+    const filmName = /Ciao Alberto/i;
+    const filmImage = await screen.findByRole('img', { name: filmName });
+    const homeLink = 'Volver a la página principal';
+
+    //act
+    userEvent.click(filmImage);
+
+    //assert
+    screen.getByRole('link', { name: homeLink });
+  });
+});

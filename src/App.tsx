@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Route, Routes, useParams } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { GlobalStyles } from './ui/theme/GlobalStyles';
 
@@ -9,13 +9,14 @@ import { ApiRepository } from './core/infraestructure/ApiRepository';
 import { fetchAllFilms } from './core/services/fetchAllFilms';
 
 import { HomeContainer } from './ui/views/HomeContainer';
+import { FilmCardInformation } from './ui/components/FilmCardInformation';
 
 function App() {
   const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  const [textToFilter, setTextToFilter] = useState<string>('');
+  const [userTypeSearch, setUserTypeSearch] = useState<string>('');
 
   useEffect(() => {
     /* Solution to memory leaks: https://www.wisdomgeek.com/development/web-development/react/avoiding-race-conditions-memory-leaks-react-useeffect/amp/?utm_source=pocket_mylist */
@@ -44,7 +45,7 @@ function App() {
     };
   }, []);
 
-  const formatedFilter: string = textToFilter
+  const formatedFilter: string = userTypeSearch
     .split(' ')
     .filter((substring) => substring)
     .join(' ')
@@ -69,8 +70,8 @@ function App() {
           path="/"
           element={
             <HomeContainer
-              textToFilter={textToFilter}
-              setTextToFilter={setTextToFilter}
+              userTypeSearch={userTypeSearch}
+              setUserTypeSearch={setUserTypeSearch}
               formatedFilter={formatedFilter}
               error={error}
               loading={loading}
@@ -79,23 +80,11 @@ function App() {
           }
         />
         <Route path="film">
-          <Route path=":filmId" element={<MockComponent />} />
+          <Route path=":filmId" element={<FilmCardInformation />} />
         </Route>
       </Routes>
     </>
   );
 }
 
-export function MockComponent() {
-  const filmId = useParams();
-  console.log(filmId.filmId);
-  return (
-    <>
-      <h1>
-        Soy el futuro componente de la información de la películas:{' '}
-        {filmId.filmId}
-      </h1>
-    </>
-  );
-}
 export default App;
