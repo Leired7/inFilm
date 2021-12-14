@@ -160,7 +160,9 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver mÃ¡s informaciÃ
     userEvent.click(filmImage);
 
     //assert
-    expect(screen.getByRole('heading', { name: filmName })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: filmName, level: 1 })
+    ).toBeInTheDocument();
   });
   it('Muestra un link para volver a la home', async () => {
     //arrange
