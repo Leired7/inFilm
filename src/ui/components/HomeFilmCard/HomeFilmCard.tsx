@@ -5,11 +5,18 @@ import { font, color, media, grid } from '../../theme';
 
 import { Link } from 'react-router-dom';
 
+import genresJson from '../../../mocks/genre_es.json';
+
+interface Genres {
+  id: number;
+  name: string;
+}
+
 export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   poster_path,
   title,
   release_date,
-  genres_id,
+  genre_ids,
   vote_average,
   vote_count,
   id,
@@ -51,6 +58,7 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
             <FilmTitle title={title}>
               <strong>{title}</strong>
             </FilmTitle>
+
             <FilmBrief>
               <p>
                 <VoteText>Puntuación: </VoteText>

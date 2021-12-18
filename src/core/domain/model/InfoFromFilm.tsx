@@ -4,7 +4,7 @@ export interface InfoFromFilm {
   backdrop_path: string;
   title: string;
   release_date: string;
-  genres_id: number[];
+  genre_ids: number[];
   vote_average: number;
   vote_count: number;
   overview: string;
