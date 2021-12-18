@@ -151,6 +151,7 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
       </MemoryRouter>
     );
   });
+
   it('Muestra el título de la película en el componente `FilmCardInformation`', async () => {
     //arrange
     const filmName = /Ciao Alberto/i;
@@ -164,6 +165,7 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
       screen.getByRole('heading', { name: filmName, level: 1 })
     ).toBeInTheDocument();
   });
+
   it('Muestra un link en el componente `FilmCardInformation` para volver a la home', async () => {
     //arrange
     const filmName = /Ciao Alberto/i;
@@ -175,5 +177,11 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
 
     //assert
     screen.getByRole('link', { name: homeLink });
+  });
+  it('Muestra 20 listas con el nombre "Géneros"', async () => {
+    // arrange
+    const listInHome = await screen.findAllByRole('list', { name: 'Géneros' });
+
+    expect(listInHome.length).toBe(popularFilms.results.length);
   });
 });

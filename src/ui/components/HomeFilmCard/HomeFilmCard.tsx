@@ -58,7 +58,9 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
             <FilmTitle title={title}>
               <strong>{title}</strong>
             </FilmTitle>
-
+            <ul title="Géneros">
+              <li></li>
+            </ul>
             <FilmBrief>
               <p>
                 <VoteText>Puntuación: </VoteText>
