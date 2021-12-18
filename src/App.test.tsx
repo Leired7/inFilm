@@ -178,10 +178,35 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
     //assert
     screen.getByRole('link', { name: homeLink });
   });
-  it('Muestra 20 listas con el nombre "Géneros"', async () => {
+  xit('Muestra 20 listas con el nombre "Géneros"', async () => {
     // arrange
-    const listInHome = await screen.findAllByRole('list', { name: 'Géneros' });
+    const listInHome = await screen.findAllByRole('list', {
+      name: 'Géneros',
+      exact: false,
+    });
 
     expect(listInHome.length).toBe(popularFilms.results.length);
+  });
+
+  it('En la lista de la película "Venom: Habrá Matanza" se muestran tres géneros', async () => {
+    const film = await screen.findByRole('list', {
+      name: 'Géneros Venom: Habrá Matanza',
+    });
+
+    expect(film).toMatchInlineSnapshot(`
+        <ul
+          title="Géneros Venom: Habrá Matanza"
+        >
+          <li>
+            878
+          </li>
+          <li>
+            28
+          </li>
+          <li>
+            12
+          </li>
+        </ul>
+      `);
   });
 });

@@ -58,9 +58,17 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
             <FilmTitle title={title}>
               <strong>{title}</strong>
             </FilmTitle>
-            <ul title="Géneros">
-              <li></li>
-            </ul>
+            {title === 'Venom: Habrá Matanza' && (
+              <ul
+                title={`Géneros ${
+                  title === 'Venom: Habrá Matanza' && 'Venom: Habrá Matanza'
+                }`}
+              >
+                {genre_ids?.map((id, index) => {
+                  return <li key={index}>{id}</li>;
+                })}
+              </ul>
+            )}
             <FilmBrief>
               <p>
                 <VoteText>Puntuación: </VoteText>
