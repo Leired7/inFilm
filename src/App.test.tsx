@@ -151,7 +151,7 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
       </MemoryRouter>
     );
   });
-  it('Muestra el título de la película', async () => {
+  it('Muestra el título de la película en el componente `FilmCardInformation`', async () => {
     //arrange
     const filmName = /Ciao Alberto/i;
     const filmImage = await screen.findByRole('img', { name: filmName });
@@ -164,7 +164,7 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
       screen.getByRole('heading', { name: filmName, level: 1 })
     ).toBeInTheDocument();
   });
-  it('Muestra un link para volver a la home', async () => {
+  it('Muestra un link en el componente `FilmCardInformation` para volver a la home', async () => {
     //arrange
     const filmName = /Ciao Alberto/i;
     const filmImage = await screen.findByRole('img', { name: filmName });
