@@ -27,3 +27,11 @@ jobs:
 
       - name: Run tests
         run: npm run test -- --coverage
+
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypres run
+        uses: cypress-io/github-actions@v2
+        with:
+          build: npm run build
+          start: npm start
