@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import popularFilms from './mocks/popular_movie.json';
+import popularFilms from './core/infraestructure/data/popular_movie.json';
 import genres from './mocks/genre_es.json';
 
 import { server } from './mocks/server';

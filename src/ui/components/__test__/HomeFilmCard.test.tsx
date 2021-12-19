@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import popularFilms from '../../../mocks/popular_movie.json';
+import popularFilms from '../../../core/infraestructure/data/popular_movie.json';
 
 import { HomeFilmCard } from '../HomeFilmCard';
 
