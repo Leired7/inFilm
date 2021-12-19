@@ -1,7 +1,6 @@
 import { InfoFromFilm } from '../domain/model';
-import { Genre } from '../domain/model';
 
-import genres from '../../mocks/genre_es.json';
+import { getGenresFromIds } from './getGenresFromIds';
 
 export const getFilmsFilterwithGenres = (
   userTypeString: string,
@@ -24,19 +23,7 @@ export const getFilmsFilterwithGenres = (
     }
   );
 
-  const getGenresWord = (films: InfoFromFilm[]) => {
-    for (let film of films) {
-      const commonId = film.genre_ids.map((id) =>
-        genres.genres.filter((item) => id === item.id)
-      );
+  const filmsWithGenres = getGenresFromIds(filteredFilms);
 
-      const commonIdString: Genre[] = commonId.flat();
-
-      film.genres = [...commonIdString];
-    }
-  };
-
-  getGenresWord(filteredFilms);
-
-  return { filteredFilms, formatedFilter };
+  return { filmsWithGenres, formatedFilter };
 };

@@ -46,7 +46,7 @@ function App() {
     };
   }, []);
 
-  const { formatedFilter, filteredFilms } = getFilmsFilterwithGenres(
+  const { formatedFilter, filmsWithGenres } = getFilmsFilterwithGenres(
     userTypeSearch,
     fetchedInfo
   );
@@ -64,7 +64,7 @@ function App() {
               formatedFilter={formatedFilter}
               error={error}
               loading={loading}
-              filteredFilms={filteredFilms}
+              filteredFilms={filmsWithGenres}
             />
           }
         />
