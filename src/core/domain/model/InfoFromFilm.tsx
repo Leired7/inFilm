@@ -1,3 +1,4 @@
+import { Genre } from './Genre';
 export interface InfoFromFilm {
   id: number;
   poster_path: string;
@@ -8,4 +9,5 @@ export interface InfoFromFilm {
   vote_average: number;
   vote_count: number;
   overview: string;
+  genres?: Genre[];
 }
