@@ -46,7 +46,7 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title}
             width="100"
-            height="232"
+            height="auto"
           />
           <FilmCardInfo>
             <ReleaseData>{release_date}</ReleaseData>

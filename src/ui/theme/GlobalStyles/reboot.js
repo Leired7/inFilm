@@ -30,11 +30,20 @@ export const reboot = css`
     -ms-text-size-adjust: 100%; /* 4 */
     -ms-overflow-style: scrollbar; /* 5 */
     -webkit-tap-highlight-color: rgba(#000, 0); /* 6 */
+
+    --scrollbarBG: ${color.darkBlue};
+    --thumbBG: ${color.golden};
   }
   body {
     ${font.sizes.base()};
     color: ${color.black1};
     text-align: left; /* 3 */
     background-color: ${color.darkBlue}; /* 2 */
+  }
+
+  .scroller-x {
+    overflow-x: scroll;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+    scrollbar-width: thin;
   }
 `;
