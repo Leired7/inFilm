@@ -92,7 +92,10 @@ const FilmPoster = styled.img`
   background-color: ${color.golden};
   color: ${color.darkBlue};
   font-weight: ${font.weight.bold};
-  padding: ${grid.gap.tablet} ${media.tablet`
+  padding: ${grid.gap.tablet};
+  height: auto;
+
+  ${media.tablet`
     max-height: 232px;
   `};
 `;
