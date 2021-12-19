@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  unit-integration-test:
     name: linter and test
     runs-on: ubuntu-latest
 
@@ -28,10 +28,16 @@ jobs:
       - name: Run tests
         run: npm run test -- --coverage
 
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypres run
-        uses: cypress-io/github-actions@v2
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v2
         with:
-          build: npm run build
-          start: npm start
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
