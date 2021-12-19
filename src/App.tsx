@@ -6,14 +6,16 @@ import { GlobalStyles } from './ui/theme/GlobalStyles';
 
 import { InfoFromFilm } from './core/domain/model';
 import { ApiRepository } from './core/infraestructure/ApiRepository';
-import { fetchAllFilms } from './core/services/fetchAllFilms';
+import { fetchAllPopularFilms } from './core/services/fetchAllPopularFilms';
 
 import { HomeContainer } from './ui/views/HomeContainer';
 import { FilmCardInformation } from './ui/components/FilmCardInformation';
 import { getFilmsFilterwithGenres } from './core/services/getFilmsFilterWithGenres';
 
 function App() {
-  const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
+  const [fetchedPopularFilmsInfo, setFetchedPopularFilmsInfo] = useState<
+    Array<InfoFromFilm>
+  >([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -26,10 +28,10 @@ function App() {
       const fetchPopularFilms = async () => {
         const filmApiRepository = new ApiRepository();
         if (isComponentMounted) {
-          const response = await fetchAllFilms(filmApiRepository);
+          const response = await fetchAllPopularFilms(filmApiRepository);
 
           if (response.status === 200) {
-            await setFetchedInfo(response.results);
+            await setFetchedPopularFilmsInfo(response.results);
           } else {
             setError(true);
           }
@@ -48,7 +50,7 @@ function App() {
 
   const { formatedFilter, filmsWithGenres } = getFilmsFilterwithGenres(
     userTypeSearch,
-    fetchedInfo
+    fetchedPopularFilmsInfo
   );
 
   return (
