@@ -15,12 +15,13 @@ export const FilmCardInformation = () => {
           backgroundImage: `url(https://image.tmdb.org/t/p/w500${cardInfo.backdrop_path})`,
         }}
       ></BackgroundImage>
-      <ul title={`Géneros`}>
-        {cardInfo.genres?.map((genre, index) => {
-          return <li key={index}>{genre.name}</li>;
-        })}
-      </ul>
+
       <TextWrapper>
+        <GenreList title={`Géneros`}>
+          {cardInfo.genres?.map((genre, index) => {
+            return <GenreListItem key={index}>{genre.name}</GenreListItem>;
+          })}
+        </GenreList>
         <Title>
           {cardInfo.title} <Highlight>{cardInfo.release_date}</Highlight>
         </Title>
@@ -81,4 +82,30 @@ const StyledLink = styled(Link)`
   &:hover {
     color: ${color.white};
   }
+`;
+
+const GenreList = styled.ul`
+  display: flex;
+  gap: 10px;
+
+  overflow-x: auto;
+
+  margin: 0 -45px 0 0;
+`;
+
+const GenreListItem = styled.li`
+  line-height: 1;
+  text-align: center;
+  min-width: 100px;
+  background-color: ${color.golden};
+  color: ${color.darkBlue};
+  padding: 8px 10px;
+
+  border-radius: 15px;
+  margin: 0 0 20px;
+
+  ${media.desktop`
+      margin: 0 0 ${grid.gap.desktop}px;
+
+  `}
 `;
