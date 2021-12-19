@@ -1,9 +1,13 @@
 import { ApiResponse } from './domain';
 
+const API_URL = `https://api.themoviedb.org/3/`;
+
+const MOVIES_LIST = 'popular';
+
 export const Api = {
   getAllPopularFilms: async (): Promise<ApiResponse> => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}&language=es`
+      `${API_URL}movie/${MOVIES_LIST}?api_key=${process.env.REACT_APP_THEMOVIEDB_API_KEY}&language=es`
     );
     const data = await response.json();
 
