@@ -1,10 +1,10 @@
 name: E2E Testing
 
-on: 
+on:
   pull_request:
     branches:
       - main
-      
+
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -27,10 +27,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     container: cypress/browsers:node14.17.0-chrome91-ff89
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [homepage, contact-form, seo]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -42,7 +38,5 @@ jobs:
       - name: Cypress Test
         uses: cypress-io/github-action@v2
         with:
-          spec: cypress/integration/${{ matrix.containers }}.js
           browser: chrome
           start: npm run start
-        
