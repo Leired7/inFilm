@@ -36,6 +36,9 @@ export const HomeContainer: React.FC<HomeInfoProps> = ({
           filteredFilms={filteredFilms}
           formatedFilter={formatedFilter}
         />
+        <p>
+          no se han podido mostrar las películas que están ahora mismo en salas
+        </p>
       </main>
     </Container>
   );
