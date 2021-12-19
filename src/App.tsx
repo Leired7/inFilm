@@ -5,14 +5,12 @@ import { Route, Routes } from 'react-router-dom';
 import { GlobalStyles } from './ui/theme/GlobalStyles';
 
 import { InfoFromFilm } from './core/domain/model';
-import { Genre } from './core/domain/model';
 import { ApiRepository } from './core/infraestructure/ApiRepository';
 import { fetchAllFilms } from './core/services/fetchAllFilms';
 
-import genres from './mocks/genre_es.json';
-
 import { HomeContainer } from './ui/views/HomeContainer';
 import { FilmCardInformation } from './ui/components/FilmCardInformation';
+import { getFilmsFilterwithGenres } from './core/services/getFilmsFilterWithGenres';
 
 function App() {
   const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
@@ -48,42 +46,10 @@ function App() {
     };
   }, []);
 
-  const formatedFilter: string = userTypeSearch
-    .split(' ')
-    .filter((substring) => substring)
-    .join(' ')
-    .toLowerCase();
-
-  const filteredFilms: InfoFromFilm[] = fetchedInfo.filter(
-    (item: InfoFromFilm, index: number) => {
-      const minimumCaractersToSearch = 3;
-
-      if (formatedFilter.length >= minimumCaractersToSearch) {
-        return item.title.toLowerCase().includes(formatedFilter);
-      }
-      return item;
-    }
+  const { formatedFilter, filteredFilms } = getFilmsFilterwithGenres(
+    userTypeSearch,
+    fetchedInfo
   );
-
-  const getGenresWord = (films: InfoFromFilm[]) => {
-    /* const commonId = films.map((film) =>
-      film.genre_ids.map((id) => genres.genres.filter((item) => id === item.id))
-    );
-
-    const commonIdString = commonId.flat(); */
-
-    for (let film of films) {
-      const commonId = film.genre_ids.map((id) =>
-        genres.genres.filter((item) => id === item.id)
-      );
-
-      const commonIdString: Genre[] = commonId.flat();
-
-      film.genres = [...commonIdString];
-    }
-  };
-
-  getGenresWord(filteredFilms);
 
   return (
     <>
