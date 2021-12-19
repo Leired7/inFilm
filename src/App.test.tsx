@@ -171,6 +171,37 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
     ).toBeInTheDocument();
   });
 
+  it('Muestra los géneros de la película en el componente `FilmCardInformation`', async () => {
+    //arrange
+    const filmName = popularFilms.results[3].title;
+    const filmGenreIds = popularFilms.results[3].genre_ids;
+
+    const filmGenres = filmGenreIds.map((id) => {
+      return genres.genres.filter((item) => id === item.id);
+    });
+
+    const filmGenresList = filmGenres.flat();
+
+    const genreName = /Géneros/i;
+
+    //act
+    const filmImage = await screen.findByRole('img', { name: filmName });
+
+    userEvent.click(filmImage);
+
+    //assert
+    const genreList = await screen.findByRole('list', { name: genreName });
+
+    const { getAllByRole } = within(genreList);
+
+    const items = getAllByRole('listitem');
+
+    const genresWordsInScreen = items.map((item) => item.textContent);
+    const genresWords = filmGenresList.map((genre) => genre.name);
+
+    expect(genresWordsInScreen).toEqual([...genresWords]);
+  });
+
   it('Muestra un link en el componente `FilmCardInformation` para volver a la home', async () => {
     //arrange
     const filmName = /Ciao Alberto/i;
@@ -182,41 +213,5 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
 
     //assert
     screen.getByRole('link', { name: homeLink });
-  });
-
-  it('Muestra 20 listas con el nombre "Géneros"', async () => {
-    const genreName = /Géneros/i;
-    // arrange
-    const listInHome = await screen.findAllByRole('list', {
-      name: genreName,
-      exact: false,
-    });
-
-    expect(listInHome.length).toBe(popularFilms.results.length);
-  });
-
-  it('Muestra en cada lista los géneros de cada película de la home', async () => {
-    const genreName = 'Géneros';
-
-    for (let film of popularFilms.results) {
-      const filmInHome = await screen.findByRole('list', {
-        name: `${genreName} ${film.title}`,
-      });
-
-      const commonId = film.genre_ids.map((id) =>
-        genres.genres.filter((item) => id === item.id)
-      );
-
-      const genresList = commonId.flat();
-
-      const { getAllByRole } = within(filmInHome);
-
-      const items = getAllByRole('listitem');
-
-      const genresWords = items.map((item) => item.textContent);
-      const genresString = genresList.map((word) => word.name);
-
-      expect(genresWords).toEqual([...genresString]);
-    }
   });
 });

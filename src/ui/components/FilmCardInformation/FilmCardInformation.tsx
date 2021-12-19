@@ -15,6 +15,11 @@ export const FilmCardInformation = () => {
           backgroundImage: `url(https://image.tmdb.org/t/p/w500${cardInfo.backdrop_path})`,
         }}
       ></BackgroundImage>
+      <ul title={`Géneros`}>
+        {cardInfo.genres?.map((genre, index) => {
+          return <li key={index}>{genre.name}</li>;
+        })}
+      </ul>
       <TextWrapper>
         <Title>
           {cardInfo.title} <Highlight>{cardInfo.release_date}</Highlight>

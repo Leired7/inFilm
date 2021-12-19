@@ -26,6 +26,7 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
     poster_path: poster_path,
     overview: overview,
     backdrop_path: backdrop_path,
+    genres: genres,
   };
 
   return (
@@ -53,11 +54,6 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
               <strong>{title}</strong>
             </FilmTitle>
 
-            <ul title={`Géneros ${title}`}>
-              {genres?.map((genre, index) => {
-                return <li key={index}>{genre.name}</li>;
-              })}
-            </ul>
             <FilmBrief>
               <p>
                 <VoteText>Puntuación: </VoteText>
