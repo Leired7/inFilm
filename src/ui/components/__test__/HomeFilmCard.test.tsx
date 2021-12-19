@@ -14,10 +14,12 @@ describe('En las tarjetas de películas de la home se muestra la suguiente infor
     render(
       <MemoryRouter>
         <HomeFilmCard
+          backdrop_path={''}
+          overview={''}
           poster_path={poster_path}
           title={title}
           release_date={''}
-          genres_id={[]}
+          genre_ids={[]}
           vote_average={vote_average}
           vote_count={vote_count}
           id={id}
