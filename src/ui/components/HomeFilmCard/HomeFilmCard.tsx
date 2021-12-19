@@ -9,12 +9,13 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   poster_path,
   title,
   release_date,
-  genres_id,
+  genre_ids,
   vote_average,
   vote_count,
   id,
   overview,
   backdrop_path,
+  genres,
 }) => {
   const filmCardInfo = {
     id: id,
@@ -25,6 +26,7 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
     poster_path: poster_path,
     overview: overview,
     backdrop_path: backdrop_path,
+    genres: genres,
   };
 
   return (
@@ -44,13 +46,14 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title}
             width="100"
-            height="232"
+            height="auto"
           />
           <FilmCardInfo>
             <ReleaseData>{release_date}</ReleaseData>
             <FilmTitle title={title}>
               <strong>{title}</strong>
             </FilmTitle>
+
             <FilmBrief>
               <p>
                 <VoteText>Puntuación: </VoteText>
@@ -89,7 +92,10 @@ const FilmPoster = styled.img`
   background-color: ${color.golden};
   color: ${color.darkBlue};
   font-weight: ${font.weight.bold};
-  padding: ${grid.gap.tablet} ${media.tablet`
+  padding: ${grid.gap.tablet};
+  height: auto;
+
+  ${media.tablet`
     max-height: 232px;
   `};
 `;

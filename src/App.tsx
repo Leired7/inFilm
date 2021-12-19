@@ -10,6 +10,7 @@ import { fetchAllFilms } from './core/services/fetchAllFilms';
 
 import { HomeContainer } from './ui/views/HomeContainer';
 import { FilmCardInformation } from './ui/components/FilmCardInformation';
+import { getFilmsFilterwithGenres } from './core/services/getFilmsFilterWithGenres';
 
 function App() {
   const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
@@ -45,21 +46,9 @@ function App() {
     };
   }, []);
 
-  const formatedFilter: string = userTypeSearch
-    .split(' ')
-    .filter((substring) => substring)
-    .join(' ')
-    .toLowerCase();
-
-  const filteredFilms: InfoFromFilm[] = fetchedInfo.filter(
-    (item: InfoFromFilm, index: number) => {
-      const minimumCaractersToSearch = 3;
-
-      if (formatedFilter.length >= minimumCaractersToSearch) {
-        return item.title.toLowerCase().includes(formatedFilter);
-      }
-      return item;
-    }
+  const { formatedFilter, filmsWithGenres } = getFilmsFilterwithGenres(
+    userTypeSearch,
+    fetchedInfo
   );
 
   return (
@@ -75,7 +64,7 @@ function App() {
               formatedFilter={formatedFilter}
               error={error}
               loading={loading}
-              filteredFilms={filteredFilms}
+              filteredFilms={filmsWithGenres}
             />
           }
         />

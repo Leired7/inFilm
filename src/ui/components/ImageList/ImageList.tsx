@@ -39,25 +39,28 @@ export const ImageList: React.FC<FilmInfoProps> = ({
           poster_path,
           title,
           release_date,
-          genres_id,
+          genre_ids,
           vote_average,
           vote_count,
           id,
           overview,
           backdrop_path,
+          genres,
         } = item;
+
         return (
           <HomeFilmCard
             poster_path={poster_path}
             title={title}
             release_date={release_date}
-            genres_id={genres_id}
+            genre_ids={genre_ids}
             vote_average={vote_average}
             vote_count={vote_count}
             id={id}
             key={index}
             overview={overview}
             backdrop_path={backdrop_path}
+            genres={genres}
           />
         );
       })}
