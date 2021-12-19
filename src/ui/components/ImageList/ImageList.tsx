@@ -45,7 +45,9 @@ export const ImageList: React.FC<FilmInfoProps> = ({
           id,
           overview,
           backdrop_path,
+          genres,
         } = item;
+
         return (
           <HomeFilmCard
             poster_path={poster_path}
@@ -58,6 +60,7 @@ export const ImageList: React.FC<FilmInfoProps> = ({
             key={index}
             overview={overview}
             backdrop_path={backdrop_path}
+            genres={genres}
           />
         );
       })}

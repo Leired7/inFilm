@@ -1,11 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { MemoryRouter } from 'react-router-dom';
+
 import popularFilms from './mocks/popular_movie.json';
+import genres from './mocks/genre_es.json';
+
 import { server } from './mocks/server';
 import { rest } from 'msw';
+
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+
+import App from './App';
 
 describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
   beforeEach(() => {
@@ -178,35 +183,40 @@ describe('Histroria de usuarie 3: "COMO usuarie QUIERO poder ver más informaci�
     //assert
     screen.getByRole('link', { name: homeLink });
   });
-  xit('Muestra 20 listas con el nombre "Géneros"', async () => {
+
+  it('Muestra 20 listas con el nombre "Géneros"', async () => {
+    const genreName = /Géneros/i;
     // arrange
     const listInHome = await screen.findAllByRole('list', {
-      name: 'Géneros',
+      name: genreName,
       exact: false,
     });
 
     expect(listInHome.length).toBe(popularFilms.results.length);
   });
 
-  it('En la lista de la película "Venom: Habrá Matanza" se muestran tres géneros', async () => {
-    const film = await screen.findByRole('list', {
-      name: 'Géneros Venom: Habrá Matanza',
-    });
+  it('Muestra en cada lista los géneros de cada película de la home', async () => {
+    const genreName = 'Géneros';
 
-    expect(film).toMatchInlineSnapshot(`
-        <ul
-          title="Géneros Venom: Habrá Matanza"
-        >
-          <li>
-            878
-          </li>
-          <li>
-            28
-          </li>
-          <li>
-            12
-          </li>
-        </ul>
-      `);
+    for (let film of popularFilms.results) {
+      const filmInHome = await screen.findByRole('list', {
+        name: `${genreName} ${film.title}`,
+      });
+
+      const commonId = film.genre_ids.map((id) =>
+        genres.genres.filter((item) => id === item.id)
+      );
+
+      const genresList = commonId.flat();
+
+      const { getAllByRole } = within(filmInHome);
+
+      const items = getAllByRole('listitem');
+
+      const genresWords = items.map((item) => item.textContent);
+      const genresString = genresList.map((word) => word.name);
+
+      expect(genresWords).toEqual([...genresString]);
+    }
   });
 });

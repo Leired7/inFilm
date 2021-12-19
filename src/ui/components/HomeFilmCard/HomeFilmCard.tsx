@@ -5,13 +5,6 @@ import { font, color, media, grid } from '../../theme';
 
 import { Link } from 'react-router-dom';
 
-import genresJson from '../../../mocks/genre_es.json';
-
-interface Genres {
-  id: number;
-  name: string;
-}
-
 export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   poster_path,
   title,
@@ -22,6 +15,7 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
   id,
   overview,
   backdrop_path,
+  genres,
 }) => {
   const filmCardInfo = {
     id: id,
@@ -58,17 +52,12 @@ export const HomeFilmCard: React.FC<InfoFromFilm> = ({
             <FilmTitle title={title}>
               <strong>{title}</strong>
             </FilmTitle>
-            {title === 'Venom: Habrá Matanza' && (
-              <ul
-                title={`Géneros ${
-                  title === 'Venom: Habrá Matanza' && 'Venom: Habrá Matanza'
-                }`}
-              >
-                {genre_ids?.map((id, index) => {
-                  return <li key={index}>{id}</li>;
-                })}
-              </ul>
-            )}
+
+            <ul title={`Géneros ${title}`}>
+              {genres?.map((genre, index) => {
+                return <li key={index}>{genre.name}</li>;
+              })}
+            </ul>
             <FilmBrief>
               <p>
                 <VoteText>Puntuación: </VoteText>

@@ -5,8 +5,11 @@ import { Route, Routes } from 'react-router-dom';
 import { GlobalStyles } from './ui/theme/GlobalStyles';
 
 import { InfoFromFilm } from './core/domain/model';
+import { Genre } from './core/domain/model';
 import { ApiRepository } from './core/infraestructure/ApiRepository';
 import { fetchAllFilms } from './core/services/fetchAllFilms';
+
+import genres from './mocks/genre_es.json';
 
 import { HomeContainer } from './ui/views/HomeContainer';
 import { FilmCardInformation } from './ui/components/FilmCardInformation';
@@ -61,6 +64,26 @@ function App() {
       return item;
     }
   );
+
+  const getGenresWord = (films: InfoFromFilm[]) => {
+    /* const commonId = films.map((film) =>
+      film.genre_ids.map((id) => genres.genres.filter((item) => id === item.id))
+    );
+
+    const commonIdString = commonId.flat(); */
+
+    for (let film of films) {
+      const commonId = film.genre_ids.map((id) =>
+        genres.genres.filter((item) => id === item.id)
+      );
+
+      const commonIdString: Genre[] = commonId.flat();
+
+      film.genres = [...commonIdString];
+    }
+  };
+
+  getGenresWord(filteredFilms);
 
   return (
     <>
