@@ -1,16 +1,10 @@
+import { render, screen } from '@testing-library/react';
+import { rest } from 'msw';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import popularFilms from './core/infraestructure/data/popular_movie.json';
-import genres from './core/domain/object_value/genre_es.json';
-
-import { server } from './mocks/server';
-import { rest } from 'msw';
-
-import { render, screen, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-
 import App from './App';
+import popularFilms from './core/infraestructure/data/popular_movie.json';
+import { server } from './mocks/server';
 
 describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
   beforeEach(() => {
