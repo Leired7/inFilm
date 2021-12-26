@@ -44,7 +44,6 @@ function App() {
           'https://api.themoviedb.org/3/movie/now_playing'
         );
 
-        console.log(response.status);
         if (response.status === 200) {
           const data = await response.json();
           await setFetchedNowPlayingFilmsInfo(data.results);
