@@ -1,17 +1,17 @@
 # Historias de usuarie de InFilm
 
 - COMO usuarie
-- QUIERO poder ver la portada de las 20 pelis más vistas
+- QUIERO poder ver la portada de las 20 pelis más populares
 - PARA elegir pelis para echar la siesta
 
-> R1 Muestra las 20 pelis más vistas
+> R1 Muestra las 20 pelis más populares
 
     · _Antecedentes:_
     Irantzu es una amante del cine. Siempre le gusta saber cuál es la peli que más gente ha visto para elegir que ver en el cine o en la siesta.
 
 **Ejemplo R1:**
 
-- No se muestran las 20 pelis más vistas.
+- No se muestran las 20 pelis más populares.
 
 - Irantzu accede a InFilm. => Se muestra un error.
 
@@ -19,9 +19,9 @@
 
 **Ejemplo R1:**
 
-- Se muestran las 20 pelis más vistas.
+- Se muestran las 20 pelis más populares.
 
-- Irantzu accede a InFilm. => Se ven las 20 pelis más vistas
+- Irantzu accede a InFilm. => Se ven las 20 pelis más populares
 
 - [x] Hecho
 

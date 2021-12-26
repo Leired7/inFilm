@@ -6,7 +6,7 @@ import App from './App';
 import popularFilms from './core/infraestructure/data/popular_movie.json';
 import { server } from './mocks/server';
 
-describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
+describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más populares PARA elegir pelis para echar la siesta"', () => {
   beforeEach(() => {
     render(
       <MemoryRouter>
@@ -21,7 +21,7 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
     screen.queryByText(loadingMessage);
   });
 
-  xit('No muestra las 20 pelis más vistas', async () => {
+  xit('No muestra las 20 pelis más populares', async () => {
     server.use(
       rest.get('https://api.themoviedb.org/3/movie/opular', (req, res, ctx) => {
         return res(ctx.status(500), ctx.json({ error: 'Server Error' }));
@@ -40,7 +40,7 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
     await screen.findByText(dontShowMessage);
   });
 
-  it('Muestra la carátula de las 20 películas más vistas', async () => {
+  it('Muestra la carátula de las 20 películas más populares', async () => {
     const mostPopularFilms = /Películas más populares/i;
 
     const popularFilmsList = await screen.findByRole('list', {
