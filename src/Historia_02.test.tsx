@@ -36,7 +36,11 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
 
     userEvent.type(searchInput, userTypedWord);
 
-    screen.getByText('Ohhhh no encontramos lo que buscabas 😔');
+    const a = await screen.findAllByText(
+      'Ohhhh no encontramos lo que buscabas 😔'
+    );
+
+    expect(a.length).toBe(2);
   });
 
   it('Serán parte del resultado de búsqueda aquellas pelis donde la etiqueta coincida parcialmente con el término de búsqueda', async () => {

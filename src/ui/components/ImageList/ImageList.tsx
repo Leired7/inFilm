@@ -30,7 +30,7 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   }
 
   if (filteredFilms.length === 0 && formatedFilter.length > 3) {
-    return <p>{`Ohhhh no encontramos lo que buscabas en ${typeOfList} 😔`}</p>;
+    return <p>{`Ohhhh no encontramos lo que buscabas 😔`}</p>;
   }
 
   return (
