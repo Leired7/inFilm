@@ -5,10 +5,12 @@ import { grid, media, sizes } from '../../theme';
 import { HomeFilmCard } from '../HomeFilmCard';
 
 export interface FilmInfoProps {
-  error: boolean;
+  error?: boolean;
   loading: boolean;
   filteredFilms: InfoFromFilm[];
   formatedFilter: string;
+  typeOfList: string;
+  nowPlayingError?: boolean;
 }
 
 export const ImageList: React.FC<FilmInfoProps> = ({
@@ -16,9 +18,11 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   loading,
   filteredFilms,
   formatedFilter,
+  typeOfList,
+  nowPlayingError,
 }) => {
-  if (error) {
-    return <p>No se han podido mostrar las 20 películas más vistas</p>;
+  if (error || nowPlayingError) {
+    return <p>{`No se han podido mostrar las 20 películas ${typeOfList}`}</p>;
   }
 
   if (loading) {
@@ -26,11 +30,11 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   }
 
   if (filteredFilms.length === 0 && formatedFilter.length > 3) {
-    return <p>Ohhhh no encontramos lo que buscabas 😔</p>;
+    return <p>{`Ohhhh no encontramos lo que buscabas en ${typeOfList} 😔`}</p>;
   }
 
   return (
-    <DisplayList title="Películas más vistas">
+    <DisplayList title={`Películas ${typeOfList}`}>
       {filteredFilms.map((item: InfoFromFilm, index: number) => {
         const {
           poster_path,
