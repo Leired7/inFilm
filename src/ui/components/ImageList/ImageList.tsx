@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { media, sizes, grid } from '../../theme';
-
 import { InfoFromFilm } from '../../../core/domain/model';
-
+import { grid, media, sizes } from '../../theme';
 import { HomeFilmCard } from '../HomeFilmCard';
 
 export interface FilmInfoProps {
@@ -33,7 +30,7 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   }
 
   return (
-    <DisplayList>
+    <DisplayList title="Películas más vistas">
       {filteredFilms.map((item: InfoFromFilm, index: number) => {
         const {
           poster_path,
@@ -49,26 +46,27 @@ export const ImageList: React.FC<FilmInfoProps> = ({
         } = item;
 
         return (
-          <HomeFilmCard
-            poster_path={poster_path}
-            title={title}
-            release_date={release_date}
-            genre_ids={genre_ids}
-            vote_average={vote_average}
-            vote_count={vote_count}
-            id={id}
-            key={index}
-            overview={overview}
-            backdrop_path={backdrop_path}
-            genres={genres}
-          />
+          <li key={index} title={title}>
+            <HomeFilmCard
+              poster_path={poster_path}
+              title={title}
+              release_date={release_date}
+              genre_ids={genre_ids}
+              vote_average={vote_average}
+              vote_count={vote_count}
+              id={id}
+              overview={overview}
+              backdrop_path={backdrop_path}
+              genres={genres}
+            />
+          </li>
         );
       })}
     </DisplayList>
   );
 };
 
-const DisplayList = styled.div`
+const DisplayList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: ${sizes.small};

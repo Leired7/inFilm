@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { rest } from 'msw';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
@@ -20,6 +20,7 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 
     screen.queryByText(loadingMessage);
   });
+
   it('No muestra las 20 pelis más vistas', async () => {
     server.use(
       rest.get(
@@ -40,11 +41,23 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
 
     await screen.findByText(dontShowMessage);
   });
+
   it('Muestra la carátula de las 20 películas más vistas', async () => {
-    for (let film of popularFilms.results) {
-      await screen.findByRole('img', {
-        name: `${film.title}`,
-      });
+    const mostPopularFilms = /Películas más vistas/i;
+
+    const popularFilmsList = await screen.findByRole('list', {
+      name: mostPopularFilms,
+    });
+
+    const { findAllByRole } = within(popularFilmsList);
+
+    const items = await findAllByRole('listitem');
+
+    const postersInScreen = items.map((item) => item.title);
+    const popularFilmsItems = popularFilms.results.map((item) => item.title);
+
+    for (let i = 0; i < postersInScreen.length; i++) {
+      expect(postersInScreen[i]).toContain(popularFilmsItems[i]);
     }
   });
 });
