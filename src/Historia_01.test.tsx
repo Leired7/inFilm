@@ -21,11 +21,14 @@ describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de la
     screen.queryByText(loadingMessage);
   });
 
-  xit('No muestra las 20 pelis más populares', async () => {
+  it('No muestra las 20 pelis más populares', async () => {
     server.use(
-      rest.get('https://api.themoviedb.org/3/movie/opular', (req, res, ctx) => {
-        return res(ctx.status(500), ctx.json({ error: 'Server Error' }));
-      })
+      rest.get(
+        'https://api.themoviedb.org/3/movie/popular',
+        (req, res, ctx) => {
+          return res(ctx.status(500), ctx.json({ error: 'Server Error' }));
+        }
+      )
     );
 
     render(
