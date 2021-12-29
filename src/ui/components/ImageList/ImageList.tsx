@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { InfoFromFilm } from '../../../core/domain/model';
-import { grid, media, sizes } from '../../theme';
+import { color, font, grid, media, sizes } from '../../theme';
 import { HomeFilmCard } from '../HomeFilmCard';
 
 export interface FilmInfoProps {
@@ -34,39 +34,44 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   }
 
   return (
-    <DisplayList title={`Películas ${typeOfList}`}>
-      {filteredFilms.map((item: InfoFromFilm, index: number) => {
-        const {
-          poster_path,
-          title,
-          release_date,
-          genre_ids,
-          vote_average,
-          vote_count,
-          id,
-          overview,
-          backdrop_path,
-          genres,
-        } = item;
+    <>
+      <DisplayList title={`Películas ${typeOfList}`}>
+        <TitleLi>
+          <ListTitle>Películas {typeOfList}</ListTitle>
+        </TitleLi>
+        {filteredFilms.map((item: InfoFromFilm, index: number) => {
+          const {
+            poster_path,
+            title,
+            release_date,
+            genre_ids,
+            vote_average,
+            vote_count,
+            id,
+            overview,
+            backdrop_path,
+            genres,
+          } = item;
 
-        return (
-          <li key={index} title={title}>
-            <HomeFilmCard
-              poster_path={poster_path}
-              title={title}
-              release_date={release_date}
-              genre_ids={genre_ids}
-              vote_average={vote_average}
-              vote_count={vote_count}
-              id={id}
-              overview={overview}
-              backdrop_path={backdrop_path}
-              genres={genres}
-            />
-          </li>
-        );
-      })}
-    </DisplayList>
+          return (
+            <li key={index} title={title}>
+              <HomeFilmCard
+                poster_path={poster_path}
+                title={title}
+                release_date={release_date}
+                genre_ids={genre_ids}
+                vote_average={vote_average}
+                vote_count={vote_count}
+                id={id}
+                overview={overview}
+                backdrop_path={backdrop_path}
+                genres={genres}
+              />
+            </li>
+          );
+        })}
+      </DisplayList>
+    </>
   );
 };
 
@@ -74,8 +79,21 @@ const DisplayList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: ${sizes.small};
+  margin-bottom: ${sizes.small};
 
   ${media.desktop`
     padding: 0 ${grid.gap.desktopLarge}px;
   `}
+`;
+
+const ListTitle = styled.h2`
+  color: ${color.golden};
+  font-family: 'Londrina Solid';
+  font-size: ${font.sizes.large}
+  text-transform: uppercase;
+  padding: 16px;
+`;
+
+const TitleLi = styled.div`
+  background-color: rgba(76, 86, 106, 0.9);
 `;
