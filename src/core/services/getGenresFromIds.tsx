@@ -1,7 +1,7 @@
 import { InfoFromFilm } from '../domain/model';
 import { Genre } from '../domain/model';
 
-import genres from '../../mocks/genre_es.json';
+import genres from '../domain/object_value/genre_es.json';
 
 export const getGenresFromIds = (films: InfoFromFilm[]) => {
   for (let film of films) {

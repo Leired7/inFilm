@@ -1,17 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { media, sizes, grid } from '../../theme';
-
 import { InfoFromFilm } from '../../../core/domain/model';
-
+import { color, font, grid, media, sizes } from '../../theme';
 import { HomeFilmCard } from '../HomeFilmCard';
 
 export interface FilmInfoProps {
-  error: boolean;
+  error?: boolean;
   loading: boolean;
   filteredFilms: InfoFromFilm[];
   formatedFilter: string;
+  typeOfList: string;
+  nowPlayingError?: boolean;
 }
 
 export const ImageList: React.FC<FilmInfoProps> = ({
@@ -19,9 +18,11 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   loading,
   filteredFilms,
   formatedFilter,
+  typeOfList,
+  nowPlayingError,
 }) => {
-  if (error) {
-    return <p>No se han podido mostrar las 20 películas más vistas</p>;
+  if (error || nowPlayingError) {
+    return <p>{`No se han podido mostrar las 20 películas ${typeOfList}`}</p>;
   }
 
   if (loading) {
@@ -29,51 +30,70 @@ export const ImageList: React.FC<FilmInfoProps> = ({
   }
 
   if (filteredFilms.length === 0 && formatedFilter.length > 3) {
-    return <p>Ohhhh no encontramos lo que buscabas 😔</p>;
+    return <p>{`Ohhhh no encontramos lo que buscabas 😔`}</p>;
   }
 
   return (
-    <DisplayList>
-      {filteredFilms.map((item: InfoFromFilm, index: number) => {
-        const {
-          poster_path,
-          title,
-          release_date,
-          genre_ids,
-          vote_average,
-          vote_count,
-          id,
-          overview,
-          backdrop_path,
-          genres,
-        } = item;
+    <>
+      <DisplayList title={`Películas ${typeOfList}`}>
+        <TitleLi>
+          <ListTitle>Películas {typeOfList}</ListTitle>
+        </TitleLi>
+        {filteredFilms.map((item: InfoFromFilm, index: number) => {
+          const {
+            poster_path,
+            title,
+            release_date,
+            genre_ids,
+            vote_average,
+            vote_count,
+            id,
+            overview,
+            backdrop_path,
+            genres,
+          } = item;
 
-        return (
-          <HomeFilmCard
-            poster_path={poster_path}
-            title={title}
-            release_date={release_date}
-            genre_ids={genre_ids}
-            vote_average={vote_average}
-            vote_count={vote_count}
-            id={id}
-            key={index}
-            overview={overview}
-            backdrop_path={backdrop_path}
-            genres={genres}
-          />
-        );
-      })}
-    </DisplayList>
+          return (
+            <li key={index} title={title}>
+              <HomeFilmCard
+                poster_path={poster_path}
+                title={title}
+                release_date={release_date}
+                genre_ids={genre_ids}
+                vote_average={vote_average}
+                vote_count={vote_count}
+                id={id}
+                overview={overview}
+                backdrop_path={backdrop_path}
+                genres={genres}
+              />
+            </li>
+          );
+        })}
+      </DisplayList>
+    </>
   );
 };
 
-const DisplayList = styled.div`
+const DisplayList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: ${sizes.small};
+  margin-bottom: ${sizes.small};
 
   ${media.desktop`
     padding: 0 ${grid.gap.desktopLarge}px;
   `}
+`;
+
+const ListTitle = styled.h2`
+  color: ${color.golden};
+  font-family: 'Londrina Solid';
+  font-size: ${font.sizes.large}
+  text-transform: uppercase;
+  padding: 16px;
+`;
+
+const TitleLi = styled.div`
+  background-color: rgba(76, 86, 106, 0.9);
 `;

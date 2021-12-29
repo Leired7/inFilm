@@ -1,8 +1,8 @@
 import { FilmRepository } from '../domain/model';
 import { ApiResponse } from '../infraestructure/Api/domain';
 
-export async function fetchAllFilms(
+export async function fetchAllPopularFilms(
   filmRepository: FilmRepository
 ): Promise<ApiResponse> {
-  return await filmRepository.fetchAll();
+  return await filmRepository.fetchAllPopularFilms();
 }

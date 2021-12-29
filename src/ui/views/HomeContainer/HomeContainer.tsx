@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-
-import { grid, color } from '../../theme';
+import { InfoFromFilm } from '../../../core/domain/model';
 import { ImageList } from '../../components/ImageList';
 import { Navigation } from '../../components/Navigation/Navigation';
-import { InfoFromFilm } from '../../../core/domain/model';
+import { color, grid } from '../../theme';
 
 export interface HomeInfoProps {
   userTypeSearch: string;
@@ -12,6 +11,8 @@ export interface HomeInfoProps {
   error: boolean;
   loading: boolean;
   filteredFilms: InfoFromFilm[];
+  nowPlayingFilmsWithGenres: InfoFromFilm[];
+  nowPlayingError: boolean;
 }
 
 export const HomeContainer: React.FC<HomeInfoProps> = ({
@@ -21,6 +22,8 @@ export const HomeContainer: React.FC<HomeInfoProps> = ({
   error,
   loading,
   filteredFilms,
+  nowPlayingFilmsWithGenres,
+  nowPlayingError,
 }) => {
   return (
     <Container className="container">
@@ -35,6 +38,14 @@ export const HomeContainer: React.FC<HomeInfoProps> = ({
           loading={loading}
           filteredFilms={filteredFilms}
           formatedFilter={formatedFilter}
+          typeOfList="más populares"
+        />
+        <ImageList
+          loading={loading}
+          filteredFilms={nowPlayingFilmsWithGenres}
+          formatedFilter={formatedFilter}
+          nowPlayingError={nowPlayingError}
+          typeOfList="en cartelera"
         />
       </main>
     </Container>

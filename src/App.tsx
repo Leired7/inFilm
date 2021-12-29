@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-
 import { Route, Routes } from 'react-router-dom';
-
-import { GlobalStyles } from './ui/theme/GlobalStyles';
-
 import { InfoFromFilm } from './core/domain/model';
 import { ApiRepository } from './core/infraestructure/ApiRepository';
-import { fetchAllFilms } from './core/services/fetchAllFilms';
-
-import { HomeContainer } from './ui/views/HomeContainer';
-import { FilmCardInformation } from './ui/components/FilmCardInformation';
+import { fetchAllPopularFilms } from './core/services/fetchAllPopularFilms';
 import { getFilmsFilterwithGenres } from './core/services/getFilmsFilterWithGenres';
+import { FilmCardInformation } from './ui/components/FilmCardInformation';
+import { GlobalStyles } from './ui/theme/GlobalStyles';
+import { HomeContainer } from './ui/views/HomeContainer';
 
 function App() {
-  const [fetchedInfo, setFetchedInfo] = useState<Array<InfoFromFilm>>([]);
+  const [fetchedPopularFilmsInfo, setFetchedPopularFilmsInfo] = useState<
+    Array<InfoFromFilm>
+  >([]);
+  const [fetchedNowPlayingFilmsInfo, setFetchedNowPlayingFilmsInfo] = useState<
+    Array<InfoFromFilm>
+  >([]);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const [nowPlayingError, setNowPlayingError] = useState<boolean>(false);
 
   const [userTypeSearch, setUserTypeSearch] = useState<string>('');
 
@@ -26,17 +29,31 @@ function App() {
       const fetchPopularFilms = async () => {
         const filmApiRepository = new ApiRepository();
         if (isComponentMounted) {
-          const response = await fetchAllFilms(filmApiRepository);
+          const response = await fetchAllPopularFilms(filmApiRepository);
 
           if (response.status === 200) {
-            await setFetchedInfo(response.results);
+            await setFetchedPopularFilmsInfo(response.results);
           } else {
             setError(true);
           }
         }
       };
 
+      const fetchedNowPlayingFilmsInfo = async () => {
+        const response = await fetch(
+          'https://api.themoviedb.org/3/movie/now_playing'
+        );
+
+        if (response.status === 200) {
+          const data = await response.json();
+          await setFetchedNowPlayingFilmsInfo(data.results);
+        } else {
+          setNowPlayingError(true);
+        }
+      };
+
       fetchPopularFilms();
+      fetchedNowPlayingFilmsInfo();
     } finally {
       setLoading(false);
     }
@@ -46,9 +63,20 @@ function App() {
     };
   }, []);
 
-  const { formatedFilter, filmsWithGenres } = getFilmsFilterwithGenres(
-    userTypeSearch,
-    fetchedInfo
+  const userText: string = userTypeSearch
+    .split(' ')
+    .filter((substring: string) => substring)
+    .join(' ')
+    .toLowerCase();
+
+  const filmsWithGenres = getFilmsFilterwithGenres(
+    userText,
+    fetchedPopularFilmsInfo
+  );
+
+  const nowPlayingFilms = getFilmsFilterwithGenres(
+    userText,
+    fetchedNowPlayingFilmsInfo
   );
 
   return (
@@ -61,10 +89,12 @@ function App() {
             <HomeContainer
               userTypeSearch={userTypeSearch}
               setUserTypeSearch={setUserTypeSearch}
-              formatedFilter={formatedFilter}
+              formatedFilter={userText}
               error={error}
               loading={loading}
               filteredFilms={filmsWithGenres}
+              nowPlayingFilmsWithGenres={nowPlayingFilms}
+              nowPlayingError={nowPlayingError}
             />
           }
         />
