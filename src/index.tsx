@@ -22,6 +22,9 @@ async function main() {
         console.warn('Found an unhanded %s request to %s', req.method, req.url);
       },
     });
+
+    const axe = require('react-axe');
+    axe(React, ReactDOM, 1000);
   }
 
   ReactDOM.render(
