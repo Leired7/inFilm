@@ -1,16 +1,12 @@
-import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-
-import popularFilms from './mocks/popular_movie.json';
-import genres from './mocks/genre_es.json';
-
-import { server } from './mocks/server';
-import { rest } from 'msw';
-
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
+import { rest } from 'msw';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import App from './App';
+import genres from './mocks/genre_es.json';
+import popularFilms from './mocks/popular_movie.json';
+import { server } from './mocks/server';
 
 describe('Historia de usuarie 1: "COMO usuarie QUIERO poder ver la portada de las 20 pelis más vistas PARA elegir pelis para echar la siesta"', () => {
   beforeEach(() => {
@@ -64,7 +60,7 @@ describe('Historias de usuarie 2: "COMO usuarie QUIERO poder buscar las pelis qu
       </MemoryRouter>
     );
 
-    const labelText = /Busca para 😴/i;
+    const labelText = /Busca películas para echar la siesta 😴/i;
     screen.getByLabelText(labelText);
 
     searchInput = screen.getByPlaceholderText(labelText);

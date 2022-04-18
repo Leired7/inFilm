@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { SearchBar } from '../SearchBar';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { SearchBar } from '../SearchBar';
 
 describe('Funcionamiento del buscador', () => {
   it('Muestra mensaje si el término de búsqueda tiene 1 caracter', () => {
@@ -17,7 +17,7 @@ describe('Funcionamiento del buscador', () => {
       />
     );
 
-    const labelText = /Busca para 😴/i;
+    const labelText = /Busca películas para echar la siesta 😴/i;
     screen.getByLabelText(labelText);
 
     const searchInput = screen.getByPlaceholderText(labelText);
@@ -49,7 +49,7 @@ describe('Funcionamiento del buscador', () => {
       />
     );
 
-    const labelText = /Busca para 😴/i;
+    const labelText = /Busca películas para echar la siesta 😴/i;
     screen.getByLabelText(labelText);
 
     const searchInput = screen.getByPlaceholderText(labelText);
@@ -81,7 +81,7 @@ describe('Funcionamiento del buscador', () => {
       />
     );
 
-    const labelText = /Busca para 😴/i;
+    const labelText = /Busca películas para echar la siesta 😴/i;
     screen.getByLabelText(labelText);
 
     const searchInput = screen.getByPlaceholderText(labelText);
