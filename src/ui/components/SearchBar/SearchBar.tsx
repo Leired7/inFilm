@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-
-import { sizes, color, media, font } from '../../theme';
+import { color, font, media, sizes } from '../../theme';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface SearchBarInfoProps {
   userTypeSearch: string;
@@ -15,10 +15,12 @@ export const SearchBar: React.FC<SearchBarInfoProps> = ({
 }) => {
   return (
     <SearchBarForm>
-      <SearchLabel htmlFor="busqueda">Busca para 😴</SearchLabel>
+      <VisuallyHidden label={true} for="busqueda">
+        Busca películas para echar la siesta 😴
+      </VisuallyHidden>
       <SearchInput
         id="busqueda"
-        placeholder="Busca para 😴"
+        placeholder="Busca películas para echar la siesta 😴"
         value={userTypeSearch}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setUserTypeSearch(event.currentTarget.value);
@@ -39,9 +41,7 @@ const SearchBarForm = styled.form`
     flex-basis: 80%;
   `}
 `;
-const SearchLabel = styled.label`
-  display: none;
-`;
+
 const SearchInput = styled.input`
   border: none;
 
