@@ -15,7 +15,7 @@ export const SearchBar: React.FC<SearchBarInfoProps> = ({
 }) => {
   return (
     <SearchBarForm>
-      <VisuallyHidden label={true} for="busqueda">
+      <VisuallyHidden label={true} htmlFor="busqueda">
         Busca películas para echar la siesta 😴
       </VisuallyHidden>
       <SearchInput

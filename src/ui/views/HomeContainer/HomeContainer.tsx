@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-
-import { grid, color } from '../../theme';
+import { InfoFromFilm } from '../../../core/domain/model';
 import { ImageList } from '../../components/ImageList';
 import { Navigation } from '../../components/Navigation/Navigation';
-import { InfoFromFilm } from '../../../core/domain/model';
+import { color, grid } from '../../theme';
 
 export interface HomeInfoProps {
   userTypeSearch: string;
@@ -30,6 +29,7 @@ export const HomeContainer: React.FC<HomeInfoProps> = ({
         formatedFilter={formatedFilter}
       />
       <main>
+        <PageTitle>Listado con las películas más populares</PageTitle>
         <ImageList
           error={error}
           loading={loading}
@@ -46,4 +46,9 @@ const Container = styled.div`
   min-height: 100vh;
 
   border: 10px solid ${color.golden};
+`;
+
+const PageTitle = styled.h1`
+  font-family: Londrina Solid;
+  color: ${color.golden};
 `;
